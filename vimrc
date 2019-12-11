@@ -1,4 +1,5 @@
 call plug#begin('~/.vim/plugged')
+    Plug 'morhetz/gruvbox'
     Plug 'alvan/vim-closetag'
     Plug 'godlygeek/tabular'
     Plug 'haya14busa/incsearch.vim'
@@ -16,22 +17,19 @@ call plug#begin('~/.vim/plugged')
     Plug 'haishanh/night-owl.vim'
 call plug#end()
 
+let $NVIM_TUI_ENABLE_TRUE_COLORS=1
+
+set termguicolors
+let COLORTERM="truecolor"
+syntax on
+highlight Normal ctermbg=None
+colorscheme night-owl
+" colorscheme gruvbox
 set nolist
 let g:rainbow_active = 1
 
 set ignorecase
 set noinfercase
-
-if (has("termguicolors")) 
-    set termguicolors
-endif
-
-let $NVIM_TUI_ENABLE_TRUE_COLORS=1
-
-syntax enable
-colorscheme night-owl
-
-highlight Normal ctermbg=None
 
 let g:solarized_termcolors=256
 

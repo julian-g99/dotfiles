@@ -30,6 +30,7 @@ for_window [class="Slack"] move to workspace $ws4
 #for_window [instance="calcurse"] move position up
 
 gaps inner 5
+gaps outer 5
 
 exec_always --no-startup-id compton -f
 
@@ -55,7 +56,8 @@ font pango:Source Code Pro 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec urxvt
+# bindsym $mod+Return exec urxvt -fn "xft:DejaVuSansMono Nerd Font"
+bindsym $mod+Return exec termite
 
 bindsym $mod+Ctrl+greater move workspace to output right
 bindsym $mod+Ctrl+less move workspace to output left
@@ -71,6 +73,17 @@ bindsym $mod+Shift+less move workspace to output left
 
 # take screenshot with maim
 bindsym $mod+Shift+a exec maim -s | xclip -selection clipboard -t image/png
+
+# brightness control
+bindsym XF86MonBrightnessUp exec light -A 10
+bindsym XF86MonBrightnessDown exec light -U 10
+
+# sound control
+# bindsym XF86AudioLowerVolume exec sh -c "pactl set-sink-mute 0 false ; pactl set-sink-volume 0 +5%"
+bindsym XF86AudioLowerVolume exec /home/julian/bin/lower_volume.sh
+bindsym XF86AudioRaiseVolume exec /home/julian/bin/raise_volume.sh
+# bindsym XF86AudioRaiseVolume exec sh -c "pactl set-sink-mute 0 false ; pactl set-sink-volume 0 -5%"
+bindsym XF86AudioMute exec exec pactl set-sink-mute 0 toggle
 
 set $bg-color 	         #2f343f
 set $inactive-bg-color   #2f343f
@@ -157,8 +170,8 @@ set $ws1 "1: terminals"
 set $ws2 "2: browser"
 set $ws3 "3: discord"
 set $ws4 "4: slack"
-set $ws5 "5: intellij"
-set $ws6 "6: wechat"
+set $ws5 "5: spotify"
+set $ws6 "6: vs code"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
@@ -176,11 +189,11 @@ bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
-assign [class="Firefox"] $ws2
+assign [class="firefox"] $ws2
 assign [class="discord"] $ws3
 assign [class="slack"] $ws4
-assign [class="jetbrains-idea"] $ws5
-assign [class="electronic-wechat"] $ws6
+for_window [class="Spotify"] move to workspace $ws5
+assign [class="code-oss"] $ws6
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
@@ -240,14 +253,16 @@ client.urgent           #ffffff #900000 #ffffff #000000   #900000
 client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 client.background       #000000
 
-bar {
-	position top
-	# tray_output none
-	status_command ~/.i3/bumblebee-status -m nic cpu memory battery date time  -p root.path=/ time.format="%H:%M CW %V" date.format="%a, %b %d %Y" -t iceberg
-}
+# bar {
+# 	position top
+# 	# tray_output none
+# 	status_command ~/.i3/bumblebee-status -m nic cpu memory battery date time  -p root.path=/ time.format="%H:%M CW %V" date.format="%a, %b %d %Y" -t iceberg
+# }
 
+exec --no-startup-id feh --bg-center ~/Downloads/wallpaper.jpg
+exec polybar top
+exec polybar bottom
 exec Discord
 exec dropbox
 #exec xrandr --output HDMI-0 --rotate right
-exec feh --bg-center ~/Pictures/wallpaper.jpg
 exec fcitx

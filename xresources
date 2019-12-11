@@ -1,4 +1,4 @@
-URxvt.font: xft:DejaVuSansMono Nerd Font:size=10
+URxvt.font: xft:DejaVuSansMono Nerd Font:size=11
 URxvt.scrollBar: false
 URxvt.cursorColor: #FF7F50
 URxvt.internalBorder: 15
@@ -57,9 +57,9 @@ Xcursor.theme: Hackneyed
 
 rofi.modi:                           ssh,window,drun,run
 rofi.sidebar-mode:                   true
-rofi.terminal:                       urxvt
+rofi.terminal:                       termite
 rofi.ssh-client:                     ssh
-rofi.ssh-command:                    {terminal} -e "{ssh-client} {host}"
+!rofi.ssh-command:                    {terminal} -e "{ssh-client} {host}"
 rofi.opacity:                        100
 rofi.width:                          50
 rofi.lines:                          8
@@ -95,3 +95,5 @@ rofi.separator-style:                solid
 rofi.hide-scrollbar:                 true
 rofi.markup-rows:                    false
 rofi.scrollbar-width:                8
+rofi.run-command: fish -c '{cmd}'
+rofi.run-list-command: 'fish -c functions'

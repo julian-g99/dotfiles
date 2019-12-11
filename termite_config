@@ -1,0 +1,7 @@
+[options]
+font = DejaVuSansMono Nerd Font 12
+
+[colors]
+foreground = #d6deeb
+background = #011627
+cursor = #80a4c2
