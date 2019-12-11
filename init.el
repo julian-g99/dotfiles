@@ -17,7 +17,7 @@
  '(helm-completion-style (quote emacs))
  '(package-selected-packages
    (quote
-    (evil-commentary jedi elpy linum-relative drag-stuff use-package helm ranger night-owl-theme evil-visual-mark-mode))))
+    (sublimity neotree org-bullets evil-commentary jedi elpy linum-relative drag-stuff use-package helm ranger night-owl-theme evil-visual-mark-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -29,7 +29,7 @@
   (require 'use-package))
 
 ;;=========evil mode stuff===========''
-
+(setq evil-want-C-u-scroll t)
 (use-package evil)
 (evil-mode t)
 
@@ -42,6 +42,32 @@
 (evil-ex-define-cmd "quit" 'evil-quit)
 
 ;;=========evil mode stuff===========''
+
+;=========sublimity stuff===========''
+(setq sublimity-scroll-weight 5
+      sublimity-scroll-drift-length 5)
+(require 'sublimity)
+(require 'sublimity-scroll)
+(require 'sublimity-attractive)
+(sublimity-mode 1)
+(setq scroll-step            5
+      scroll-conservatively  10000)
+;;=========nerd tree stuff===========''
+(use-package neotree)
+    (add-hook 'neotree-mode-hook
+              (lambda ()
+                (define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter)
+                (define-key evil-normal-state-local-map (kbd "SPC") 'neotree-quick-look)
+                (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
+                (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)
+                (define-key evil-normal-state-local-map (kbd "g") 'neotree-refresh)
+                (define-key evil-normal-state-local-map (kbd "n") 'neotree-next-line)
+                (define-key evil-normal-state-local-map (kbd "p") 'neotree-previous-line)
+                (define-key evil-normal-state-local-map (kbd "A") 'neotree-stretch-toggle)
+                (define-key evil-normal-state-local-map (kbd "H") 'neotree-hidden-file-toggle)))
+(setq-default neo-show-hidden-files t)
+;;=========nerd tree stuff===========''
+
 
 (use-package linum-relative :ensure t)
 (global-linum-mode 1)
@@ -147,11 +173,6 @@
  
  (add-hook 'after-load-theme-hook #'night-owl-update-evil-cursors)
 
-(set-face-attribute 'default nil
-                    :family "DejaVuSansMono Nerd Font"
-                    :height 115
-                    :weight 'normal
-                    :width 'normal)
 
 
 ;;----------dev stuff-----------;;
@@ -169,3 +190,21 @@
   (add-hook 'elpy-mode-hook 'flycheck-mode))
 ;; (define-key python-mode-map (kbd "<C-n>") 'helm-jedi-related-names)
 
+
+;;========os dependent============;;
+(cond ((eq system-type 'windows-nt)
+       ;;windows stuff
+       (set-face-attribute 'default nil
+		    :family "DejaVuSansMono NF"
+		    :height 115
+		    :weight 'normal
+		    :width 'normal)
+       )
+      ((eq system-type 'gnu/linux)
+       ;;linux stuff
+       (set-face-attribute 'default nil
+		    :family "DejaVuSansMono Nerd Font"
+		    :height 115
+		    :weight 'normal
+		    :width 'normal)
+       ))
