@@ -57,7 +57,7 @@
 ;;========org mode stuff==========;;
 (use-package org)
 (use-package org-bullets :ensure t)
-(add-hook 'org-mode-hook #'org-bullets-mode)
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 (define-key org-mode-map (kbd "M-h") nil)
 (define-key org-mode-map (kbd "M-H") 'org-metaleft)
 (define-key org-mode-map (kbd "M-j") nil)
@@ -195,8 +195,6 @@
 ;;----------dev stuff-----------;;
 
 ;; language agnostic
-(use-package rainbow-delimiters :ensure t)
-(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
 ;;python
 (elpy-enable)
@@ -208,7 +206,6 @@
 
   (add-hook 'elpy-mode-hook 'flycheck-mode))
 ;; (define-key python-mode-map (kbd "<C-n>") 'helm-jedi-related-names)
-
 
 
 ;;========os dependent============;;
