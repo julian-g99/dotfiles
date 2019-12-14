@@ -5,26 +5,9 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
  
+
 (setq package-enable-at-startup nil)
 (package-initialize)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("f357d72451c46d51219c3afd21bb397a33cb059e21db1f4adeffe5b8a9093537" default)))
- '(helm-completion-style (quote emacs))
- '(package-selected-packages
-   (quote
-    (neotree org-bullets evil-commentary jedi elpy linum-relative drag-stuff use-package helm ranger evil-visual-mark-mode))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#011627" :foreground "#D6DEEB" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :foundry "ADBO" :family "DejaVuSansMono Nerd Font")))))
 
 (eval-when-compile
   (require 'use-package))
@@ -52,16 +35,6 @@
 
 ;;=========evil mode stuff===========''
 
-;=========sublimity stuff===========''
-;; (setq sublimity-scroll-weight 5
-;;       sublimity-scroll-drift-length 5)
-;; (require 'sublimity)
-;; (require 'sublimity-scroll)
-;; (require 'sublimity-attractive)
-;; (sublimity-mode 1)
-;; (setq scroll-step            5
-;;       scroll-conservatively  10000)
-
 
 ;;========org mode stuff==========;;
 (use-package org)
@@ -76,7 +49,7 @@
 (define-key org-mode-map (kbd "M-l") nil)
 (define-key org-mode-map (kbd "M-L") 'org-metaright)
 ;;=========nerd tree stuff===========''
-(use-package neotree)
+(use-package neotree :ensure t)
     (add-hook 'neotree-mode-hook
               (lambda ()
                 (define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter)
@@ -96,7 +69,7 @@
 (global-linum-mode 1)
 (linum-relative-on)
 
-(use-package drag-stuff)
+(use-package drag-stuff :ensure t)
 (drag-stuff-global-mode t)
 (global-set-key (kbd "M-h") 'drag-stuff-left)
 (global-set-key (kbd "M-j") 'drag-stuff-down)
@@ -106,7 +79,6 @@
 (require 'helm)
 (require 'helm-config)
 
-;; (global-set-key (kbd "g-c") 'comment-dwim) ;
 ;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
 ;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
 ;; cannot change `helm-command-prefix-key' once `helm-config' is loaded.
@@ -151,6 +123,7 @@
 (helm-mode 1)
 
 
+(use-package gruvbox-theme :ensure t)
 (load-theme 'gruvbox t)
 
 ;;----------dev stuff-----------;;
@@ -158,17 +131,6 @@
 ;; language agnostic
 (use-package rainbow-delimiters :ensure t)
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
-
-;;python
-(elpy-enable)
-;; (define-key ac-completing-map (kbd "<C-n>") 'ac-next)
-;; (define-key ac-completing-map (kbd "<C-p>") 'ac-previous)
-(when (require 'flycheck nil t)
-
-  (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
-
-  (add-hook 'elpy-mode-hook 'flycheck-mode))
-;; (define-key python-mode-map (kbd "<C-n>") 'helm-jedi-related-names)
 
 
 
