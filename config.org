@@ -1,156 +1,211 @@
-#+BEGIN_SRC emacs-lisp
-(require 'package)
- 
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
- 
+* Loading basic packages
+    #+BEGIN_SRC emacs-lisp
+    (require 'package)
 
-(setq package-enable-at-startup nil)
-(package-initialize)
-
-(eval-when-compile
-  (require 'use-package))
-
-;;=========evil mode stuff===========''
-(use-package evil-leader :ensure t)
-(global-evil-leader-mode)
-(evil-leader/set-leader ",")
-(evil-leader/set-key
- "f" 'find-file
- "b" 'switch-to-buffer
- "k" 'kill-buffer
- )
-(setq evil-want-C-u-scroll t)
-(use-package evil)
-(evil-mode t)
-
-(use-package evil-commentary)
-(evil-commentary-mode t)
-
-;; :q should kill the current buffer rather than quitting emacs entirely
-(evil-ex-define-cmd "q" 'kill-this-buffer)
-;; Need to type out :quit to close emacs
-(evil-ex-define-cmd "quit" 'evil-quit)
-
-;;=========evil mode stuff===========''
+    (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
+    (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+    (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
 
 
-;;========org mode stuff==========;;
-(use-package org)
-(use-package org-bullets :ensure t)
-(add-hook 'org-mode-hook #'org-bullets-mode)
-(define-key org-mode-map (kbd "M-h") nil)
-(define-key org-mode-map (kbd "M-H") 'org-metaleft)
-(define-key org-mode-map (kbd "M-j") nil)
-(define-key org-mode-map (kbd "M-J") 'org-metadown)
-(define-key org-mode-map (kbd "M-k") nil)
-(define-key org-mode-map (kbd "M-K") 'org-metaup)
-(define-key org-mode-map (kbd "M-l") nil)
-(define-key org-mode-map (kbd "M-L") 'org-metaright)
-;;=========nerd tree stuff===========''
-(use-package neotree :ensure t)
-    (add-hook 'neotree-mode-hook
-              (lambda ()
-                (define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter)
-                (define-key evil-normal-state-local-map (kbd "SPC") 'neotree-quick-look)
-                (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
-                (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)
-                (define-key evil-normal-state-local-map (kbd "g") 'neotree-refresh)
-                (define-key evil-normal-state-local-map (kbd "n") 'neotree-next-line)
-                (define-key evil-normal-state-local-map (kbd "p") 'neotree-previous-line)
-                (define-key evil-normal-state-local-map (kbd "A") 'neotree-stretch-toggle)
-                (define-key evil-normal-state-local-map (kbd "H") 'neotree-hidden-file-toggle)))
-(setq-default neo-show-hidden-files t)
-;;=========nerd tree stuff===========''
+    (setq package-enable-at-startup nil)
+    (package-initialize)
+
+    (eval-when-compile
+    (require 'use-package))
+
+    #+END_SRC
+
+* General settings
+** Nerdtree
+    #+BEGIN_SRC emacs-lisp
+    (use-package neotree :ensure t)
+	(add-hook 'neotree-mode-hook
+		(lambda ()
+		    (define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter)
+		    (define-key evil-normal-state-local-map (kbd "SPC") 'neotree-quick-look)
+		    (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
+		    (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)
+		    (define-key evil-normal-state-local-map (kbd "g") 'neotree-refresh)
+		    (define-key evil-normal-state-local-map (kbd "n") 'neotree-next-line)
+		    (define-key evil-normal-state-local-map (kbd "p") 'neotree-previous-line)
+		    (define-key evil-normal-state-local-map (kbd "A") 'neotree-stretch-toggle)
+		    (define-key evil-normal-state-local-map (kbd "H") 'neotree-hidden-file-toggle)))
+    (setq-default neo-show-hidden-files t)
+    #+END_SRC
+
+** Drag stuff
+    #+BEGIN_SRC emacs-lisp
+    (use-package drag-stuff :ensure t)
+    (drag-stuff-global-mode t)
+    (global-set-key (kbd "M-h") 'drag-stuff-left)
+    (global-set-key (kbd "M-j") 'drag-stuff-down)
+    (global-set-key (kbd "M-k") 'drag-stuff-up)
+    (global-set-key (kbd "M-l") 'drag-stuff-right)
+    #+END_SRC
+    
+** Line number settings
+    #+BEGIN_SRC emacs-lisp
+    (use-package linum-relative :ensure t)
+    (setq linum-relative-current-symbol "")
+    (global-linum-mode 1)
+    (linum-relative-on)
+    #+END_SRC
+
+** Evil mode
+    #+BEGIN_SRC emacs-lisp
+    (use-package evil-leader :ensure t)
+    (global-evil-leader-mode)
+    (evil-leader/set-leader ",")
+    (evil-leader/set-key
+    "f" 'helm-find-files
+    "b" 'switch-to-buffer
+    "k" 'kill-buffer
+    "x" 'helm-M-x
+    "t" 'neotree-show
+    "T" 'neotree-hide
+    )
+    (setq evil-want-C-u-scroll t)
+    (use-package evil)
+    (evil-mode t)
+
+    (use-package evil-commentary)
+    (evil-commentary-mode t)
+
+    ;; :q should kill the current buffer rather than quitting emacs entirely
+    (evil-ex-define-cmd "q" 'kill-this-buffer)
+    ;; Need to type out :quit to close emacs
+    (evil-ex-define-cmd "quit" 'evil-quit)
+    #+END_SRC
+
+** Helm
+    #+BEGIN_SRC emacs-lisp
+    (require 'helm)
+    (require 'helm-config)
+
+    ;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
+    ;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
+    ;; cannot change `helm-command-prefix-key' once `helm-config' is loaded.
+    (global-set-key (kbd "C-c h") 'helm-command-prefix)
+    (global-unset-key (kbd "C-x c"))
+    (global-set-key (kbd "M-x") 'helm-M-x)
+    (global-set-key (kbd "C-x r b") #'helm-filtered-bookmarks)
+    (global-set-key (kbd "C-x C-f") #'helm-find-files)
+
+    (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
+    (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB work in terminal
+    (define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
+
+    (when (executable-find "curl")
+    (setq helm-google-suggest-use-curl-p t))
+
+    (setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
+	helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
+	helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
+	helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
+	helm-ff-file-name-history-use-recentf t
+	helm-echo-input-in-header-line t)
+
+    (defun spacemacs//helm-hide-minibuffer-maybe ()
+    "Hide minibuffer in Helm session if we use the header line as input field."
+    (when (with-helm-buffer helm-echo-input-in-header-line)
+	(let ((ov (make-overlay (point-min) (point-max) nil nil t)))
+	(overlay-put ov 'window (selected-window))
+	(overlay-put ov 'face
+		    (let ((bg-color (face-background 'default nil)))
+			`(:background ,bg-color :foreground ,bg-color)))
+	(setq-local cursor-type nil))))
 
 
-(use-package linum-relative :ensure t)
-(global-linum-mode 1)
-(linum-relative-on)
+    (add-hook 'helm-minibuffer-set-up-hook
+	    'spacemacs//helm-hide-minibuffer-maybe)
 
-(use-package drag-stuff :ensure t)
-(drag-stuff-global-mode t)
-(global-set-key (kbd "M-h") 'drag-stuff-left)
-(global-set-key (kbd "M-j") 'drag-stuff-down)
-(global-set-key (kbd "M-k") 'drag-stuff-up)
-(global-set-key (kbd "M-l") 'drag-stuff-right)
+    (setq helm-autoresize-max-height 0)
+    (setq helm-autoresize-min-height 20)
+    (helm-autoresize-mode 1)
 
-(require 'helm)
-(require 'helm-config)
+    (helm-mode 1)
+    #+END_SRC
 
-;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
-;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
-;; cannot change `helm-command-prefix-key' once `helm-config' is loaded.
-(global-set-key (kbd "C-c h") 'helm-command-prefix)
-(global-unset-key (kbd "C-x c"))
-(global-set-key (kbd "M-x") 'helm-M-x)
-(global-set-key (kbd "C-x r b") #'helm-filtered-bookmarks)
-(global-set-key (kbd "C-x C-f") #'helm-find-files)
+* UI settings
+** Color scheme
+    #+BEGIN_SRC emacs-lisp
+    (use-package gruvbox-theme :ensure t)
+    (load-theme 'gruvbox-dark-hard t)
+    #+END_SRC
 
-(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
-(define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB work in terminal
-(define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
-
-(when (executable-find "curl")
-  (setq helm-google-suggest-use-curl-p t))
-
-(setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
-      helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
-      helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
-      helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
-      helm-ff-file-name-history-use-recentf t
-      helm-echo-input-in-header-line t)
-
-(defun spacemacs//helm-hide-minibuffer-maybe ()
-  "Hide minibuffer in Helm session if we use the header line as input field."
-  (when (with-helm-buffer helm-echo-input-in-header-line)
-    (let ((ov (make-overlay (point-min) (point-max) nil nil t)))
-      (overlay-put ov 'window (selected-window))
-      (overlay-put ov 'face
-                   (let ((bg-color (face-background 'default nil)))
-                     `(:background ,bg-color :foreground ,bg-color)))
-      (setq-local cursor-type nil))))
-
-
-(add-hook 'helm-minibuffer-set-up-hook
-          'spacemacs//helm-hide-minibuffer-maybe)
-
-(setq helm-autoresize-max-height 0)
-(setq helm-autoresize-min-height 20)
-(helm-autoresize-mode 1)
-
-(helm-mode 1)
-
-
-(use-package gruvbox-theme :ensure t)
-(load-theme 'gruvbox t)
-
-;;----------dev stuff-----------;;
-
-;; language agnostic
-(use-package rainbow-delimiters :ensure t)
-(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
-
-
-
-;;========os dependent============;;
-(cond ((eq system-type 'windows-nt)
-       ;;windows stuff
-       (progn
+** Font settings
+    #+BEGIN_SRC emacs-lisp
+    (cond ((eq system-type 'windows-nt)
+	;;windows stuff
+	(progn
+	    (set-face-attribute 'default nil
+			    :family "DejaVuSansMono NF"
+			    :height 115
+			    :weight 'normal
+			    :width 'normal)
+	    (add-to-list 'default-frame-alist '(fullscreen . maximized))
+	))
+	((eq system-type 'gnu/linux)
+	;;linux stuff
 	(set-face-attribute 'default nil
-			:family "DejaVuSansMono NF"
+			:family "DejaVuSansMono Nerd Font"
 			:height 115
 			:weight 'normal
 			:width 'normal)
-	(add-to-list 'default-frame-alist '(fullscreen . maximized))
-       ))
-      ((eq system-type 'gnu/linux)
-       ;;linux stuff
-       (set-face-attribute 'default nil
-		    :family "DejaVuSansMono Nerd Font"
-		    :height 115
-		    :weight 'normal
-		    :width 'normal)
-       ))
+	))
+    #+END_SRC
+
+** Powerline
+    #+BEGIN_SRC emacs-lisp
+    (use-package powerline-evil :ensure t)
+    (powerline-evil-vim-color-theme)
+    (custom-set-faces
+	'(powerline-evil-normal-face ((t (:background "#a89984" :foreground "#eee8d5"))))
+	'(powerline-evil-insert-face ((t (:background "#89a598" :foreground "#eee8d5"))))
+	'(powerline-evil-visual-face ((t (:background "#fe8019" :foreground "#eee8d5"))))
+	'(powerline-evil-operator-face ((t (:background "#2aa198" :foreground "#eee8d5"))))
+	'(powerline-evil-replace-face ((t (:background "#8ec07c" :foreground "#eee8d5"))))
+	'(powerline-evil-motion-face ((t (:background "#d33682" :foreground "#eee8d5"))))
+	'(powerline-evil-emacs-face ((t (:background "#6c71c4" :foreground "#eee8d5"))))
+    )
+    #+END_SRC
+* Mode specific configs
+** Org mode
+    #+BEGIN_SRC emacs-lisp
+    (use-package org)
+    (use-package org-bullets :ensure t)
+    (add-hook 'org-mode-hook #'org-bullets-mode)
+    (define-key org-mode-map (kbd "M-h") nil)
+    (define-key org-mode-map (kbd "M-H") 'org-metaleft)
+    (define-key org-mode-map (kbd "M-j") nil)
+    (define-key org-mode-map (kbd "M-J") 'org-metadown)
+    (define-key org-mode-map (kbd "M-k") nil)
+    (define-key org-mode-map (kbd "M-K") 'org-metaup)
+    (define-key org-mode-map (kbd "M-l") nil)
+    (define-key org-mode-map (kbd "M-L") 'org-metaright)
+    #+END_SRC
 #+END_SRC
+
+* Programming settings
+** Language agnostic
+*** Rainbow delimiters
+    #+BEGIN_SRC emacs-lisp
+    (use-package rainbow-delimiters :ensure t)
+    (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+    #+END_SRC
+*** Autocomplete
+    #+BEGIN_SRC emacs-lisp
+    (require 'company)
+    (add-hook 'after-init-hook 'global-company-mode)
+    #+END_SRC
+** Language specific
+*** Python
+    #+BEGIN_SRC emacs-lisp
+    (use-package anaconda-mode :ensure t)
+    (add-hook 'python-mode-hook 'anaconda-hook)
+    (require 'rx)
+    (use-package company-anaconda :ensure t)
+    (eval-after-load "company"
+        '(add-to-list 'company-backends 'company-anaconda))
+    #+END_SRC
+    
