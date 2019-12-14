@@ -1,3 +1,4 @@
+#+BEGIN_SRC emacs-lisp
 (require 'package)
  
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
@@ -29,6 +30,14 @@
   (require 'use-package))
 
 ;;=========evil mode stuff===========''
+(use-package evil-leader :ensure t)
+(global-evil-leader-mode)
+(evil-leader/set-leader ",")
+(evil-leader/set-key
+ "f" 'find-file
+ "b" 'switch-to-buffer
+ "k" 'kill-buffer
+ )
 (setq evil-want-C-u-scroll t)
 (use-package evil)
 (evil-mode t)
@@ -57,7 +66,7 @@
 ;;========org mode stuff==========;;
 (use-package org)
 (use-package org-bullets :ensure t)
-(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+(add-hook 'org-mode-hook #'org-bullets-mode)
 (define-key org-mode-map (kbd "M-h") nil)
 (define-key org-mode-map (kbd "M-H") 'org-metaleft)
 (define-key org-mode-map (kbd "M-j") nil)
@@ -66,9 +75,6 @@
 (define-key org-mode-map (kbd "M-K") 'org-metaup)
 (define-key org-mode-map (kbd "M-l") nil)
 (define-key org-mode-map (kbd "M-L") 'org-metaright)
-;; (define-key org-mode-map (kbd "<M-j>") 'org-metadown)
-;; (define-key org-mode-map (kbd "<M-k>") 'org-metaup)
-;; (define-key org-mode-map (kbd "<M-l>") 'org-metaright)
 ;;=========nerd tree stuff===========''
 (use-package neotree)
     (add-hook 'neotree-mode-hook
@@ -195,6 +201,8 @@
 ;;----------dev stuff-----------;;
 
 ;; language agnostic
+(use-package rainbow-delimiters :ensure t)
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
 ;;python
 (elpy-enable)
@@ -208,15 +216,18 @@
 ;; (define-key python-mode-map (kbd "<C-n>") 'helm-jedi-related-names)
 
 
+
 ;;========os dependent============;;
 (cond ((eq system-type 'windows-nt)
        ;;windows stuff
-       (set-face-attribute 'default nil
-		    :family "DejaVuSansMono NF"
-		    :height 115
-		    :weight 'normal
-		    :width 'normal)
-       )
+       (progn
+	(set-face-attribute 'default nil
+			:family "DejaVuSansMono NF"
+			:height 115
+			:weight 'normal
+			:width 'normal)
+	(add-to-list 'default-frame-alist '(fullscreen . maximized))
+       ))
       ((eq system-type 'gnu/linux)
        ;;linux stuff
        (set-face-attribute 'default nil
@@ -225,3 +236,4 @@
 		    :weight 'normal
 		    :width 'normal)
        ))
+#+END_SRC
