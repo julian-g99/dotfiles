@@ -214,8 +214,12 @@
 	  (progn 
 	      (setq exec-path (cons "c:/Users/jgush/Miniconda3/Library/bin" exec-path))
 	      (setq exec-path (cons "c:/Users/jgush/Miniconda3/Scripts" exec-path))
-	      (setq exec-path (cons "c:/Users/jgush/Miniconda3/Library/bin" exec-path))
-	  )))
+	      (setenv "WORKON_HOME" "c:/Users/jgush/Miniconda3/envs")
+	  ))
+	  ((eq system-type 'gnu/linux)
+	  (progn
+	      (setq exec-path (cons "/home/julian/miniconda3/bin" exec-path))
+	      (setenv "WORKON_HOME" "/home/julian/miniconda3/envs"))))
       (pyvenv-mode 1)
       ;; (setq pyvenv-virtual-env "c:/Users/jgush/Miniconda3/envs/basic")
       ;; (setq pyvenv-virtual-env-name "miniconda3")

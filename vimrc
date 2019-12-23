@@ -23,8 +23,8 @@ set termguicolors
 let COLORTERM="truecolor"
 syntax on
 highlight Normal ctermbg=None
-colorscheme night-owl
-" colorscheme gruvbox
+" colorscheme night-owl
+colorscheme gruvbox
 set nolist
 let g:rainbow_active = 1
 
@@ -39,7 +39,7 @@ function! StatusLine(current)
   return (a:current ? crystalline#mode() . '%#Crystalline#' : '%#CystallineInactive#') . ' %F%h%w%m%r '
 endfunction
 let g:crystalline_statusline_fn = 'StatusLine'
-let g:crystalline_theme = 'dracula'
+let g:crystalline_theme = 'gruvbox'
 set laststatus=2
 """crystalline"""
 
