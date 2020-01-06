@@ -105,8 +105,8 @@ set $inactive-text-color #676E7D
 set $urgent-bg-color     #E53935
 
 # start dmenu (a program launcher)
-bindsym $mod+shift+d exec rofi -show run
-bindsym $mod+d exec rofi -show drun
+bindsym $mod+shift+d exec rofi -show run -theme gruvbox
+bindsym $mod+d exec rofi -show drun -theme gruvbox
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -189,7 +189,7 @@ bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
-assign [class="firefox"] $ws2
+assign [class="Google-chrome"] $ws2
 assign [class="discord"] $ws3
 assign [class="slack"] $ws4
 for_window [class="Spotify"] move to workspace $ws5

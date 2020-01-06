@@ -15,6 +15,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'michaeljsmith/vim-indent-object'
     Plug 'junegunn/goyo.vim'
     Plug 'haishanh/night-owl.vim'
+    Plug '/usr/bin/fzf'
 call plug#end()
 
 let $NVIM_TUI_ENABLE_TRUE_COLORS=1
