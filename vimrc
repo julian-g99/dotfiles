@@ -16,9 +16,12 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/goyo.vim'
     Plug 'haishanh/night-owl.vim'
     Plug '/usr/bin/fzf'
+    Plug 'preservim/nerdcommenter'
 call plug#end()
 
 let $NVIM_TUI_ENABLE_TRUE_COLORS=1
+
+let $FZF_DEFAULT_COMMAND = 'find .'
 
 set termguicolors
 let COLORTERM="truecolor"
@@ -89,6 +92,5 @@ nnoremap <C-k> <C-w><C-k>
 nnoremap <C-l> <C-w><C-l>
 
 
-let mapleader = "\\"
-let maplocalleader = "\\"
+let mapleader = ","
 let g:vimtex_view_method = 'zathura'
