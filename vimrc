@@ -17,6 +17,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'haishanh/night-owl.vim'
     Plug '/usr/bin/fzf'
     Plug 'preservim/nerdcommenter'
+    Plug 'mhinz/vim-startify'
 call plug#end()
 
 let $NVIM_TUI_ENABLE_TRUE_COLORS=1
@@ -90,6 +91,8 @@ nnoremap <C-h> <C-w><C-h>
 nnoremap <C-j> <C-w><C-j>
 nnoremap <C-k> <C-w><C-k>
 nnoremap <C-l> <C-w><C-l>
+
+tnoremap <Esc> <C-\><C-n>
 
 
 let mapleader = ","

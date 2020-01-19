@@ -12,6 +12,8 @@ export DEFAULT_FZF_COMMAND='find .'
 export FZF_ALT_C_COMMAND='find .'
 export FZF_CTRL_T_COMMAND='find .'
 
+export PATH="$HOME/.cargo/bin:$PATH"
+
 alias vim="nvim"
 alias ls="lsd"
 export TERM=termite

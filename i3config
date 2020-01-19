@@ -172,7 +172,7 @@ set $ws3 "3: discord"
 set $ws4 "4: slack"
 set $ws5 "5: spotify"
 set $ws6 "6: vs code"
-set $ws7 "7"
+set $ws7 "7: mailspring"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
@@ -194,6 +194,7 @@ assign [class="discord"] $ws3
 assign [class="slack"] $ws4
 for_window [class="Spotify"] move to workspace $ws5
 assign [class="code-oss"] $ws6
+assign [class="Mailspring"] $ws7
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
@@ -266,3 +267,4 @@ exec Discord
 exec dropbox
 #exec xrandr --output HDMI-0 --rotate right
 exec fcitx
+exec conky
