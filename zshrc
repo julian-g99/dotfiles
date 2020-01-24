@@ -1,5 +1,7 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:$PATH
+export PATH=$HOME/.cargo/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/julian/.oh-my-zsh"
@@ -119,6 +121,17 @@ function install_powerline_precmd() {
 if [ "$TERM" != "linux" ]; then
     install_powerline_precmd
 fi
+
+
+#case $KEYMAP in
+    #(vicmd)
+        #export VI_MODE = "normal" ;;
+    #(main|viins)
+        #export VI_MODE = "insert" ;;
+    #(*)
+        #export VI_MODE="insert" ;;
+#esac
+
 
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
