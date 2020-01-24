@@ -8,7 +8,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'jiangmiao/auto-pairs'
     Plug 'Vimjas/vim-python-pep8-indent'
     Plug 'rbong/vim-crystalline'
-    Plug 'tpope/vim-surround'
+    Plug 'machakann/vim-sandwich'
     Plug 'terryma/vim-multiple-cursors'
     Plug 'luochen1990/rainbow'
     Plug 'airblade/vim-gitgutter'
@@ -18,6 +18,7 @@ call plug#begin('~/.vim/plugged')
     Plug '/usr/bin/fzf'
     Plug 'preservim/nerdcommenter'
     Plug 'mhinz/vim-startify'
+    Plug 'tommcdo/vim-ninja-feet'
 call plug#end()
 
 let $NVIM_TUI_ENABLE_TRUE_COLORS=1
