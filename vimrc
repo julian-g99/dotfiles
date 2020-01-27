@@ -19,8 +19,13 @@ call plug#begin('~/.vim/plugged')
     Plug 'preservim/nerdcommenter'
     Plug 'mhinz/vim-startify'
     Plug 'tommcdo/vim-ninja-feet'
+    Plug 'preservim/nerdtree'
+    Plug 'SirVer/UltiSnips'
+    Plug 'lervag/vimtex'
 call plug#end()
 
+let mapleader = ","
+let maplocalleader = ","
 let $NVIM_TUI_ENABLE_TRUE_COLORS=1
 
 let $FZF_DEFAULT_COMMAND = 'find .'
@@ -75,7 +80,7 @@ set breakindent
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
-map <C-n> :NERDTreeToggle<CR>
+
 
 nnoremap <A-j> :m .+1<CR>==
 nnoremap <A-k> :m .-2<CR>==
@@ -95,6 +100,30 @@ nnoremap <C-l> <C-w><C-l>
 
 tnoremap <Esc> <C-\><C-n>
 
+nmap <leader>f :FZF<CR>
+nmap <leader>t :NERDTreeToggle<CR>
 
-let mapleader = ","
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+
+" Mapping selecting mappings
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
+
+" Insert mode completion
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
+
+" Advanced customization using Vim function
+inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
+
+
 let g:vimtex_view_method = 'zathura'
+
+let g:UltiSnipsSnippetsDir = "~/.vim/UltiSnips"
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
