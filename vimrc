@@ -22,6 +22,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'preservim/nerdtree'
     Plug 'SirVer/UltiSnips'
     Plug 'lervag/vimtex'
+    Plug 'gabrielelana/vim-markdown'
+    Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 
 let mapleader = ","
@@ -117,7 +119,7 @@ imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
 
-" Advanced customization using Vim function
+"" Advanced customization using Vim function
 inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 
 
@@ -127,3 +129,21 @@ let g:UltiSnipsSnippetsDir = "~/.vim/UltiSnips"
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+
+"" write mode command"
+":command prose set background=light |  Goyo 70
+":command code set background=dark | Goyo!
+function Prose()
+    set background=light
+    Goyo 70
+endfunction
+
+function Code()
+    set background=dark
+    Goyo!
+endfunction
+nnoremap <leader>p :call Prose()<CR>
+nnoremap <leader>c :call Code()<CR>
+
+""vim:fdm=marker

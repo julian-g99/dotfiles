@@ -8,11 +8,16 @@ function fish_user_key_bindings
     fzf_key_bindings
 end
 
+
+bind ! __history_previous_command
+bind '$' __history_previous_command_arguments
+
 export DEFAULT_FZF_COMMAND='find .'
 export FZF_ALT_C_COMMAND='find .'
 export FZF_CTRL_T_COMMAND='find .'
 
 export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 alias vim="nvim"
 alias tm="tmux attach -t"
