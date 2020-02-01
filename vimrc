@@ -37,31 +37,32 @@ set splitbelow
 
 "vim plug {{{
 call plug#begin('~/.vim/plugged')
-Plug 'morhetz/gruvbox'
-Plug 'alvan/vim-closetag'
-Plug 'godlygeek/tabular'
-Plug 'haya14busa/incsearch.vim'
-Plug 'thaerkh/vim-indentguides'
-Plug 'tpope/vim-commentary'
-Plug 'jiangmiao/auto-pairs'
-Plug 'Vimjas/vim-python-pep8-indent'
-Plug 'rbong/vim-crystalline'
-Plug 'machakann/vim-sandwich'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'luochen1990/rainbow'
-Plug 'airblade/vim-gitgutter'
-Plug 'michaeljsmith/vim-indent-object'
-Plug 'junegunn/goyo.vim'
-Plug 'haishanh/night-owl.vim'
-Plug '/usr/bin/fzf'
-Plug 'preservim/nerdcommenter'
-Plug 'mhinz/vim-startify'
-Plug 'tommcdo/vim-ninja-feet'
-Plug 'preservim/nerdtree'
-Plug 'SirVer/UltiSnips'
-Plug 'lervag/vimtex'
-Plug 'gabrielelana/vim-markdown'
-Plug 'christoomey/vim-tmux-navigator'
+    Plug 'morhetz/gruvbox'
+    Plug 'alvan/vim-closetag'
+    Plug 'godlygeek/tabular'
+    Plug 'haya14busa/incsearch.vim'
+    Plug 'thaerkh/vim-indentguides'
+    Plug 'tpope/vim-commentary'
+    Plug 'jiangmiao/auto-pairs'
+    Plug 'Vimjas/vim-python-pep8-indent'
+    Plug 'rbong/vim-crystalline'
+    Plug 'machakann/vim-sandwich'
+    Plug 'terryma/vim-multiple-cursors'
+    Plug 'luochen1990/rainbow'
+    Plug 'airblade/vim-gitgutter'
+    Plug 'michaeljsmith/vim-indent-object'
+    Plug 'junegunn/goyo.vim'
+    Plug 'haishanh/night-owl.vim'
+    Plug '/usr/bin/fzf'
+    Plug 'preservim/nerdcommenter'
+    Plug 'mhinz/vim-startify'
+    Plug 'tommcdo/vim-ninja-feet'
+    Plug 'preservim/nerdtree'
+    Plug 'SirVer/UltiSnips'
+    Plug 'lervag/vimtex'
+    Plug 'gabrielelana/vim-markdown'
+    Plug 'christoomey/vim-tmux-navigator'
+    Plug 'liuchengxu/vista.vim'
 call plug#end()
 "}}}
 
@@ -160,4 +161,18 @@ function Code()
 endfunction
 nnoremap <leader>p :call Prose()<CR>
 nnoremap <leader>c :call Code()<CR>
+"}}}
+
+"vista{{{
+function! NearestMethodOrFunction() abort
+  return get(b:, 'vista_nearest_method_or_function', '')
+endfunction
+
+set statusline+=%{NearestMethodOrFunction()}
+
+" By default vista.vim never run if you don't call it explicitly.
+"
+" If you want to show the nearest function in your statusline automatically,
+" you can add the following line to your vimrc 
+autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 "}}}
