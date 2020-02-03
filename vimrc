@@ -53,7 +53,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'michaeljsmith/vim-indent-object'
     Plug 'junegunn/goyo.vim'
     Plug 'haishanh/night-owl.vim'
-    Plug '/usr/bin/fzf'
+    "Plug '/usr/bin/fzf'
+    "Plug 'junegunn/fzf.vim'
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'preservim/nerdcommenter'
     Plug 'mhinz/vim-startify'
     Plug 'tommcdo/vim-ninja-feet'
@@ -113,7 +115,7 @@ nnoremap <C-l> <C-w><C-l>
 
 tnoremap <Esc> <C-\><C-n>
 
-nmap <leader>f :FZF<CR>
+nnoremap <leader>f :FZF<CR>
 nmap <leader>t :NERDTreeToggle<CR>
 " Mapping selecting mappings
 nmap <leader><tab> <plug>(fzf-maps-n)
@@ -159,6 +161,9 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 hi CustomPink ctermbg=205 guibg=hotpink guifg=black ctermfg=black
 call matchadd('CustomPink', 'TODO')
 call matchadd('CustomPink', 'FIXME')
+
+" fzf popout
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 "}}}
 
 "prose vs code{{{
@@ -245,8 +250,8 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <leader>rn <Plug>(coc-rename)
 
 " Remap for format selected region
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+"xmap <leader>f  <Plug>(coc-format-selected)
+"nmap <leader>f  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
