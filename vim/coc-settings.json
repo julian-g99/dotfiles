@@ -1,0 +1,16 @@
+{
+    "languageserver": {
+        "ccls": {
+            "command": "ccls",
+            "filetypes": ["c", "cpp", "objc", "objcpp"],
+            "rootPatterns": [".ccls", "compile_commands.json", ".git/", ".hg/"],
+            "initializationOptions": {
+                "cache": {
+                    "directory": "/tmp/ccls"
+                }
+            }
+        }
+    },
+    "python.condaPath": "/home/julian/miniconda3/condabin/conda",
+    "python.venvPath": "/home/julian/miniconda3/envs"
+}

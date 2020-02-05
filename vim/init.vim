@@ -67,6 +67,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'liuchengxu/vista.vim'
     Plug 'rust-lang/rust.vim'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'jreybert/vimagit'
 call plug#end()
 "}}}
 
@@ -136,7 +137,7 @@ nnoremap <leader>v :Vista<CR>
 "}}}
 
 "startify{{{
-let g:startify_bookmarks = ['~/.config/nvim/init.vim']
+let g:startify_bookmarks = ['~/dotfiles/vimrc']
 let g:startify_lists = [
             \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
             \ { 'type': 'files',     'header': ['   MRU']            },
@@ -159,8 +160,12 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 " TODO highlights
 hi CustomPink ctermbg=205 guibg=hotpink guifg=black ctermfg=black
-call matchadd('CustomPink', 'TODO')
-call matchadd('CustomPink', 'FIXME')
+"call matchadd('CustomPink', 'TODO')
+"call matchadd('CustomPink', 'FIXME')
+
+augroup custom_highlightint
+    autocmd!
+    autocmd VimEnter,WinEnter * call matchadd('CustomPink', 'TODO') | call matchadd('CustomPink', 'FIXME') | call matchadd('CustomPink', 'CHECK')
 
 " fzf popout
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
@@ -214,7 +219,7 @@ function! s:check_back_space() abort
 endfunction
 
 " Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <silent><expr> <C-S-space> coc#refresh()
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
