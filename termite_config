@@ -40,4 +40,4 @@ color15 = #ebdbb2
 # vim: ft=dosini cms=#%s
 
 [options]
-font = DejaVuSansMono Nerd Font 12
+font = Iosevka Nerd Font Mono 12.5

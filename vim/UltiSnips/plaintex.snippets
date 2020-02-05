@@ -1,0 +1,70 @@
+snippet hw "homework template"
+\documentclass[letterpaper,12pt]{article}
+\usepackage{tabularx} % extra features for tabular environment
+\usepackage{amsmath,amssymb,amsthm}  % improve math presentation
+\usepackage{graphicx} % takes care of graphic including machinery
+\usepackage[margin=1in,letterpaper]{geometry} % decreases margins
+\usepackage{cite} % takes care of citations
+\usepackage[final]{hyperref} % adds hyper links inside the generated pdf file
+\usepackage{enumitem}
+\usepackage{graphicx}
+\graphicspath{ {./resources/} }
+\usepackage{float}
+\usepackage{seqsplit}
+\usepackage[rule, vlined]{algorithm2e}
+
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+\newtheorem{lemma}{Lemma}
+
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+endsnippet
+	
+snippet lec "lecture template"
+\documentclass[letterpaper,12pt]{article}
+\usepackage{tabularx} % extra features for tabular environment
+\usepackage{amsmath,amssymb,amsthm}  % improve math presentation
+\usepackage{graphicx} % takes care of graphic including machinery
+\usepackage[margin=1in,letterpaper]{geometry} % decreases margins
+\usepackage{cite} % takes care of citations
+\usepackage[final]{hyperref} % adds hyper links inside the generated pdf file
+\usepackage{enumitem}
+\usepackage{graphicx}
+\graphicspath{ {./resources/} }
+\usepackage{float}
+\usepackage{seqsplit}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem*{remark}{Remark}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{problem}{Problem}
+\newtheorem{solution}{Solution}
+\newtheorem*{question}{Question}
+\newtheorem{nota}{Notation}
+
+
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+endsnippet
+
+snippet bf "bold face"
+\textbf{$1}
+endsnippet
+
+snippet img "includegraphics"
+\begin{figure}[H]
+	\centering
+	\includegraphics{$1}
+	\caption{$2}
+	\label{$3}
+\end{figure}
+endsnippet

@@ -1,0 +1,76 @@
+snippet caller "caller template"
+;;==================;;
+;; Stack Setup      ;;
+;;==================;;
+;; Caller pushes parameters onto the stack here
+
+ADD R6, R6, -1
+LD R0, C
+STR R0, R6, 0       ; Push C
+;TODO: change pushed parameters
+;;==================;;
+;; End Stack Setup  ;;
+;;==================;;
+
+JSR FOO             ; Run FOO!
+LDR R0, R6, 0       ; R0 = return value
+ADD R6, R6, 2       ; Pop return value and parameters (Always # parameters + 1)  TODO: change the number if needed
+
+endsnippet
+
+snippet callee "callee template"
+;;==================;;
+;; Stack Setup      ;;
+;;==================;;
+ADD R6, R6, -4      ; Push 4 words, leaving space for RV, R7, R5 and local variable (<- current stack pointer)
+STR R7, R6, 2       ; Store R7 (RA)
+STR R5, R6, 1       ; Store R5 (FP)
+
+
+ADD R5, R6, 0       ; FP = SP
+ADD R6, R6, -5      ; Move FP up 5 (For R0-R4) = # of registers + # local variables (min 1!) - 1     TODO: change the number if needed
+
+STR R0, R5, -1
+STR R1, R5, -2
+STR R2, R5, -3
+STR R3, R5, -4
+STR R4, R5, -5      ; Store general purpose registers
+;;==================;;
+;; End Stack Setup  ;;
+;;==================;;
+
+
+
+
+;;==================;;
+;; FOO body         ;;
+;;==================;;
+
+;;==================;;
+;; End FOO body     ;;
+;;==================;;
+
+
+
+
+;;==================;;
+;; Stack Return     ;;
+;;==================;;
+LDR R0, R5, -1
+LDR R1, R5, -2
+LDR R2, R5, -3
+LDR R3, R5, -4
+LDR R4, R5, -5      ; Return general purpose registers
+
+ADD R6, R5, 0       ; SP = FP
+
+LDR R7, R5, 2       ; Return RA         *** MUST BE DONE FIRST ***
+LDR R5, R5, 1       ; Return old FP     *** DESTROYS CURR FP   ***
+
+ADD R6, R6, 3       ; POP 3 >> Set SP = Return Value
+
+RET                 ; Return!
+;;==================;;
+;; End Stack Return ;;
+;;==================;;
+endsnippet
