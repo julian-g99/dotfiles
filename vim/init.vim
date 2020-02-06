@@ -68,6 +68,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'rust-lang/rust.vim'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'jreybert/vimagit'
+    Plug 'dag/vim-fish'
 call plug#end()
 "}}}
 
@@ -137,7 +138,7 @@ nnoremap <leader>v :Vista<CR>
 "}}}
 
 "startify{{{
-let g:startify_bookmarks = ['~/dotfiles/vimrc']
+let g:startify_bookmarks = ['~/dotfiles/vim/init.vim']
 let g:startify_lists = [
             \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
             \ { 'type': 'files',     'header': ['   MRU']            },

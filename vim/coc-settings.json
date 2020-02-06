@@ -12,5 +12,6 @@
         }
     },
     "python.condaPath": "/home/julian/miniconda3/condabin/conda",
-    "python.venvPath": "/home/julian/miniconda3/envs"
+    "python.venvPath": "/home/julian/miniconda3/envs",
+    "coc.preferences.jumpCommand": "tab drop"
 }
