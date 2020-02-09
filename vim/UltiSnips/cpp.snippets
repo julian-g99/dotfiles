@@ -2,3 +2,8 @@ snippet type "IR instruction type"
 `!p t[2] = t[1].upper()`case "$1": type = $2;
 			break;
 endsnippet
+
+snippet viter "iterate through vector"
+std::for_each(std::begin($1), std::end($1), [](int const& value) {
+});
+endsnippet

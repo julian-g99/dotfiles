@@ -45,7 +45,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-commentary'
     Plug 'jiangmiao/auto-pairs'
     Plug 'Vimjas/vim-python-pep8-indent'
-    Plug 'rbong/vim-crystalline'
+    "Plug 'rbong/vim-crystalline'
     Plug 'machakann/vim-sandwich'
     Plug 'terryma/vim-multiple-cursors'
     Plug 'luochen1990/rainbow'
@@ -69,12 +69,14 @@ call plug#begin('~/.vim/plugged')
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'jreybert/vimagit'
     Plug 'dag/vim-fish'
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 "}}}
 
 "{{{theme
-let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+"let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+"let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
 set termguicolors
 let COLORTERM="truecolor"
 syntax on
@@ -90,12 +92,12 @@ let g:solarized_termcolors=256
 "}}}
 
 "{{{crystalline
-function! StatusLine(current)
-  return (a:current ? crystalline#mode() . '%#Crystalline#' : '%#CystallineInactive#') . ' %F%h%w%m%r '
-endfunction
-let g:crystalline_statusline_fn = 'StatusLine'
-let g:crystalline_theme = 'gruvbox'
-set laststatus=2
+"function! StatusLine(current)
+  "return (a:current ? crystalline#mode() . '%#Crystalline#' : '%#CystallineInactive#') . ' %F%h%w%m%r '
+"endfunction
+"let g:crystalline_statusline_fn = 'StatusLine'
+"let g:crystalline_theme = 'gruvbox'
+"set laststatus=2
 "}}}
 
 "mappings{{{
