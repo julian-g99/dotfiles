@@ -1,26 +1,17 @@
 " vim:fdm=marker:foldlevel=0
 
 "editor settings {{{
-set modeline
-set modelineexpr
 let mapleader = ","
 let maplocalleader = ","
 let $NVIM_TUI_ENABLE_TRUE_COLORS=1
 let $FZF_DEFAULT_COMMAND = 'find .'
 
-let g:closetag_filetypes = 'html,xhtml,phtml,vue'
 let g:vimtex_complete_enabled = 1
 set conceallevel=0
 let g:vim_markdown_conceal = 0
 let g:vim_markdown_conceal_code_blocks = 0
 let g:vim_markdown_folding_disabled = 1
 let g:tex_conceal = ""
-
-let vim_markdown_preview_browser = 'Firefox'
-
-
-let g:ale_fixers = {'vue': ['remove_trailing_lines', 'trim_whitespace']}
-let g:ale_fix_on_save = 1
 
 set number relativenumber
 set nu rnu
@@ -38,14 +29,11 @@ set splitbelow
 "vim plug {{{
 call plug#begin('~/.vim/plugged')
     Plug 'morhetz/gruvbox'
-    Plug 'alvan/vim-closetag'
     Plug 'godlygeek/tabular'
     Plug 'haya14busa/incsearch.vim'
     Plug 'thaerkh/vim-indentguides'
-    Plug 'tpope/vim-commentary'
     Plug 'jiangmiao/auto-pairs'
     Plug 'Vimjas/vim-python-pep8-indent'
-    "Plug 'rbong/vim-crystalline'
     Plug 'machakann/vim-sandwich'
     Plug 'terryma/vim-multiple-cursors'
     Plug 'luochen1990/rainbow'
@@ -53,8 +41,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'michaeljsmith/vim-indent-object'
     Plug 'junegunn/goyo.vim'
     Plug 'haishanh/night-owl.vim'
-    "Plug '/usr/bin/fzf'
-    "Plug 'junegunn/fzf.vim'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'preservim/nerdcommenter'
     Plug 'mhinz/vim-startify'
@@ -69,14 +55,12 @@ call plug#begin('~/.vim/plugged')
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'jreybert/vimagit'
     Plug 'dag/vim-fish'
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
+    Plug 'itchyny/lightline.vim'
+    Plug 'shinchu/lightline-gruvbox.vim'
 call plug#end()
 "}}}
 
 "{{{theme
-"let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
-"let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
 set termguicolors
 let COLORTERM="truecolor"
 syntax on
@@ -91,13 +75,9 @@ set noinfercase
 let g:solarized_termcolors=256
 "}}}
 
-"{{{crystalline
-"function! StatusLine(current)
-  "return (a:current ? crystalline#mode() . '%#Crystalline#' : '%#CystallineInactive#') . ' %F%h%w%m%r '
-"endfunction
-"let g:crystalline_statusline_fn = 'StatusLine'
-"let g:crystalline_theme = 'gruvbox'
-"set laststatus=2
+" Lightline{{{
+let g:lightline = {}
+let g:lightline.colorscheme = 'gruvbox'
 "}}}
 
 "mappings{{{
@@ -151,21 +131,14 @@ let g:startify_lists = [
 "}}}
 
 "miscellaneous{{{
-"autocmd StdinReadPre * let s:std_in=1
-"autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
-
 let g:vimtex_view_method = 'zathura'
 
-let g:UltiSnipsSnippetsDir = "~/.vim/UltiSnips"
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 " TODO highlights
 hi CustomPink ctermbg=205 guibg=hotpink guifg=black ctermfg=black
-"call matchadd('CustomPink', 'TODO')
-"call matchadd('CustomPink', 'FIXME')
-
 augroup custom_highlightint
     autocmd!
     autocmd VimEnter,WinEnter * call matchadd('CustomPink', 'TODO') | call matchadd('CustomPink', 'FIXME') | call matchadd('CustomPink', 'CHECK')
@@ -208,14 +181,6 @@ set shortmess+=c
 " always show signcolumns
 set signcolumn=yes
 
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
@@ -228,7 +193,6 @@ inoremap <silent><expr> <C-S-space> coc#refresh()
 " Coc only does snippet and additional edit on confirm.
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " Or use `complete_info` if your vim support it, like:
-" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
