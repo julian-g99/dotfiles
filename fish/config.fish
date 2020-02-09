@@ -1,10 +1,6 @@
 set fish_greeting
+base16-gruvbox-dark-medium
 fish_vi_key_bindings
-
-set -l GRUVBOX_SCRIPT ~/.vim/bundle/gruvbox/gruvbox_256palette.sh
-if test -f $GRUVBOX_SCRIPT
-  bash $GRUVBOX_SCRIPT
-end
 
 function fish_user_key_bindings
     fzf_key_bindings
