@@ -1,9 +1,10 @@
-#function fish_prompt
-	##powerline-shell --shell bare $status
-#end
-
 set fish_greeting
 fish_vi_key_bindings
+
+set -l GRUVBOX_SCRIPT ~/.vim/bundle/gruvbox/gruvbox_256palette.sh
+if test -f $GRUVBOX_SCRIPT
+  bash $GRUVBOX_SCRIPT
+end
 
 function fish_user_key_bindings
     fzf_key_bindings
@@ -20,6 +21,7 @@ export FZF_CTRL_T_COMMAND='find .'
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
+alias v="nvim"
 alias vim="nvim"
 alias tm="tmux attach -t"
 alias ls="lsd"
