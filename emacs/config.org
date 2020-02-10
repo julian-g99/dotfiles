@@ -58,7 +58,7 @@
     (global-evil-leader-mode)
     (evil-leader/set-leader ",")
     (evil-leader/set-key
-    "f" 'helm-find-files
+    "f" 'fzf-directory
     "b" 'switch-to-buffer
     "k" 'kill-buffer
     "x" 'helm-M-x
@@ -127,6 +127,11 @@
     (helm-mode 1)
     #+END_SRC
 
+** FZF
+    #+BEGIN_SRC emacs-lisp
+        (use-package projectile :ensure t)
+	(use-package fzf :ensure t)
+    #+END_SRC
 * UI settings
 ** Color scheme
     #+BEGIN_SRC emacs-lisp
@@ -149,7 +154,7 @@
 	((eq system-type 'gnu/linux)
 	;;linux stuff
 	(set-face-attribute 'default nil
-			:family "DejaVuSansMono Nerd Font"
+			:family "Iosevka Nerd Font Mono"
 			:height 115
 			:weight 'normal
 			:width 'normal)
@@ -195,38 +200,42 @@
     (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
     #+END_SRC
 *** Autocomplete
-    #+BEGIN_SRC emacs-lisp
-    (require 'company)
-    (add-hook 'after-init-hook 'global-company-mode)
-    #+END_SRC
 *** Parens
     #+BEGIN_SRC emacs-lisp
     (use-package smartparens :ensure t)
     (smartparens-global-mode t)
     #+END_SRC
-** Language specific
-*** Python
+** LSP
     #+BEGIN_SRC emacs-lisp
-      ;; (use-package elpy :ensure t)
-      (use-package pyvenv :ensure t)
-      (cond ((eq system-type 'windows-nt)
-          ;; windows paths
-	  (progn 
-	      (setq exec-path (cons "c:/Users/jgush/Miniconda3/Library/bin" exec-path))
-	      (setq exec-path (cons "c:/Users/jgush/Miniconda3/Scripts" exec-path))
-	      (setenv "WORKON_HOME" "c:/Users/jgush/Miniconda3/envs")
-	  ))
-	  ((eq system-type 'gnu/linux)
-	  (progn
-	      (setq exec-path (cons "/home/julian/miniconda3/bin" exec-path))
-	      (setenv "WORKON_HOME" "/home/julian/miniconda3/envs"))))
-      (pyvenv-mode 1)
-      ;; (setq pyvenv-virtual-env "c:/Users/jgush/Miniconda3/envs/basic")
-      ;; (setq pyvenv-virtual-env-name "miniconda3")
-      ;; (setq python-shell-virtual-env-path "c:/Users/jgush/Miniconda3/envs/basic")
-      ;; (setq python-shell-virtual-env-root "c:/Users/jgush/Miniconda3/envs/basic")
-      ;; (elpy-enable)
+      (use-package lsp-mode
+      ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+      :init (setq lsp-keymap-prefix "s-l")
+      :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+	      (XXX-mode . lsp)
+	      ;; if you want which-key integration
+	      (lsp-mode . lsp-enable-which-key-integration))
+      :commands lsp
+      :ensure t)
+
+      ;; optionally
+      (use-package lsp-ui :commands lsp-ui-mode :ensure t)
+      ;; (use-package company-lsp :commands company-lsp)
+      ;; if you are helm user
+      (use-package helm-lsp :commands helm-lsp-workspace-symbol :ensure t)
+      ;; if you are ivy user
+      ;; (use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
+      (use-package lsp-treemacs :commands lsp-treemacs-errors-list :ensure t)
+
+      ;; optionally if you want to use debugger
+      (use-package dap-mode :ensure t)
+      ;; (use-package dap-LANGUAGE) to load the dap adapter for your language
+
+      ;; optional if you want which-key integration
+      ;; (use-package which-key
+      ;; :config
+      ;; (which-key-mode))
     #+END_SRC
-    
-    
-    
+** Language modes
+   #+BEGIN_SRC emacs-lisp
+   (use-package rust-mode :ensure t)
+   #+END_SRC

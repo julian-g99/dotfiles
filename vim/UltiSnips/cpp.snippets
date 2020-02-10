@@ -4,6 +4,7 @@ snippet type "IR instruction type"
 endsnippet
 
 snippet viter "iterate through vector"
-std::for_each(std::begin($1), std::end($1), [](int const& value) {
-});
+for ($1::iterator it = $2.begin(); it != $2.end(); ++it) {
+	$3
+}
 endsnippet
