@@ -32,6 +32,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'godlygeek/tabular'
     Plug 'haya14busa/incsearch.vim'
     Plug 'thaerkh/vim-indentguides'
+    "Plug 'nathanaelkane/vim-indent-guides'
     Plug 'jiangmiao/auto-pairs'
     Plug 'Vimjas/vim-python-pep8-indent'
     Plug 'machakann/vim-sandwich'
@@ -57,6 +58,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'dag/vim-fish'
     Plug 'itchyny/lightline.vim'
     Plug 'shinchu/lightline-gruvbox.vim'
+    Plug 'tpope/vim-obsession'
 call plug#end()
 "}}}
 
@@ -100,6 +102,7 @@ nnoremap <C-l> <C-w><C-l>
 tnoremap <Esc> <C-\><C-n>
 
 nnoremap <leader>f :FZF<CR>
+nnoremap <leader>id :IndentGuidesToggle<CR>
 nmap <leader>t :NERDTreeToggle<CR>
 " Mapping selecting mappings
 nmap <leader><tab> <plug>(fzf-maps-n)
@@ -245,4 +248,10 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 
 " Add status line support, for integration with other plugin, checkout `:h coc-status`
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+"}}}
+
+"Obsess {{{
+set statusline^=%{ObsessionStatus()}
+nnoremap <leader>o :Obsess<CR>
+nnoremap <leader>O :Obsess!<CR>
 "}}}
