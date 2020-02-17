@@ -1,8 +1,8 @@
 " vim:fdm=marker:foldlevel=0
 
 "editor settings {{{
-let mapleader = ","
-let maplocalleader = ","
+let mapleader = " "
+let maplocalleader = " "
 let $NVIM_TUI_ENABLE_TRUE_COLORS=1
 let $FZF_DEFAULT_COMMAND = 'find .'
 
@@ -18,9 +18,11 @@ set nu rnu
 set autoindent
 set tabstop=4
 set shiftwidth=4
-set expandtab
+set noexpandtab
 set lbr
 set breakindent
+
+set list lcs=tab:\|\ 
 
 set splitright
 set splitbelow
@@ -224,6 +226,14 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
 
+" list symbols
+nnoremap <leader>s :CocList symbols<CR>
+" Create mappings for function text object, requires document symbols feature of languageserver.
+xmap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap if <Plug>(coc-funcobj-i)
+omap af <Plug>(coc-funcobj-a)
+
 " Remap for format selected region
 "xmap <leader>f  <Plug>(coc-format-selected)
 "nmap <leader>f  <Plug>(coc-format-selected)
@@ -254,4 +264,11 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 set statusline^=%{ObsessionStatus()}
 nnoremap <leader>o :Obsess<CR>
 nnoremap <leader>O :Obsess!<CR>
+"}}}
+
+"python stuff{{{
+aug python
+    " ftype/python.vim overwrites this
+    au FileType python setlocal ts=4 sts=4 sw=4 noexpandtab
+aug end
 "}}}
