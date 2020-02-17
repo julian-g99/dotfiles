@@ -72,7 +72,7 @@ highlight Normal ctermbg=None
 let g:gruvbox_italic=0
 " colorscheme night-owl
 colorscheme gruvbox
-set nolist
+"set nolist
 let g:rainbow_active = 1
 set ignorecase
 set noinfercase
