@@ -18,12 +18,12 @@ set nu rnu
 set autoindent
 set tabstop=4
 set shiftwidth=4
-set noexpandtab
+set expandtab
 set lbr
 set breakindent
 
-set list lcs=tab:\|\ 
-
+set nolist
+"set list lcs=tab:\|\ 
 set splitright
 set splitbelow
 "}}}
@@ -36,6 +36,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'thaerkh/vim-indentguides'
     "Plug 'nathanaelkane/vim-indent-guides'
     Plug 'jiangmiao/auto-pairs'
+    Plug 'dense-analysis/ale'
     Plug 'Vimjas/vim-python-pep8-indent'
     Plug 'machakann/vim-sandwich'
     Plug 'terryma/vim-multiple-cursors'
@@ -266,9 +267,14 @@ nnoremap <leader>o :Obsess<CR>
 nnoremap <leader>O :Obsess!<CR>
 "}}}
 
-"python stuff{{{
+"tab stuff{{{
 aug python
     " ftype/python.vim overwrites this
     au FileType python setlocal ts=4 sts=4 sw=4 noexpandtab
+aug end
+
+aug rust
+    " ftype/rust.vim overwrites this
+    au FileType rust setlocal ts=4 sts=4 sw=4 noexpandtab
 aug end
 "}}}
