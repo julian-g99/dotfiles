@@ -151,6 +151,9 @@ augroup custom_highlightint
 
 " fzf popout
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+
+"line numbers in nerdtree
+let NERDTreeShowLineNumbers=1
 "}}}
 
 "prose vs code{{{
@@ -179,7 +182,7 @@ set nowritebackup
 set cmdheight=2
 
 " You will have bad experience for diagnostic messages when it's default 4000.
-set updatetime=300
+set updatetime=100
 
 " don't give |ins-completion-menu| messages.
 set shortmess+=c
@@ -259,6 +262,9 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 
 " Add status line support, for integration with other plugin, checkout `:h coc-status`
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+"rust
+autocmd FileType rust let b:coc_root_patterns = ['Cargo.toml', '.vim', '.git', '.hg', '.projections.json']
 "}}}
 
 "Obsess {{{
@@ -270,11 +276,12 @@ nnoremap <leader>O :Obsess!<CR>
 "tab stuff{{{
 aug python
     " ftype/python.vim overwrites this
-    au FileType python setlocal ts=4 sts=4 sw=4 noexpandtab
+    au FileType python setlocal ts=4 sts=4 sw=4 et
 aug end
 
 aug rust
     " ftype/rust.vim overwrites this
-    au FileType rust setlocal ts=4 sts=4 sw=4 noexpandtab
+    au FileType rust setlocal ts=4 sts=4 sw=4 expandtab
 aug end
 "}}}
+
