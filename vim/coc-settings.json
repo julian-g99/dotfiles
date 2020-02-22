@@ -15,6 +15,6 @@
     "python.venvPath": "/home/julian/miniconda3/envs",
     "python.jediEnabled": false,
     "coc.preferences.jumpCommand": "tab drop",
-	"diagnostic.refreshOnInsertMode": true,
+    "diagnostic.refreshOnInsertMode": true,
     "coc.preferences.rootPatterns":  ["Cargo.toml",".vim",".git",".hg",".projections.json"]
 }

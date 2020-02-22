@@ -36,7 +36,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'thaerkh/vim-indentguides'
     "Plug 'nathanaelkane/vim-indent-guides'
     Plug 'jiangmiao/auto-pairs'
-    Plug 'dense-analysis/ale'
+    "Plug 'dense-analysis/ale'
     Plug 'Vimjas/vim-python-pep8-indent'
     Plug 'machakann/vim-sandwich'
     Plug 'terryma/vim-multiple-cursors'
@@ -232,6 +232,7 @@ nmap <leader>rn <Plug>(coc-rename)
 
 " list symbols
 nnoremap <leader>s :CocList symbols<CR>
+nnoremap <leader>mc :CocCommand
 " Create mappings for function text object, requires document symbols feature of languageserver.
 xmap if <Plug>(coc-funcobj-i)
 xmap af <Plug>(coc-funcobj-a)
