@@ -62,6 +62,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'itchyny/lightline.vim'
     Plug 'shinchu/lightline-gruvbox.vim'
     Plug 'tpope/vim-obsession'
+    Plug 'camspiers/animate.vim'
+    Plug 'camspiers/lens.vim'
 call plug#end()
 "}}}
 
