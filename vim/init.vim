@@ -46,6 +46,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/goyo.vim'
     Plug 'haishanh/night-owl.vim'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+    Plug 'junegunn/fzf.vim'
     Plug 'preservim/nerdcommenter'
     Plug 'mhinz/vim-startify'
     Plug 'tommcdo/vim-ninja-feet'
@@ -64,6 +65,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-obsession'
     Plug 'camspiers/animate.vim'
     Plug 'camspiers/lens.vim'
+    Plug 'wincent/loupe'
 call plug#end()
 "}}}
 
@@ -131,6 +133,13 @@ nnoremap <silent> <Up>    :call animate#window_delta_height(10)<CR>
 nnoremap <silent> <Down>  :call animate#window_delta_height(-10)<CR>
 nnoremap <silent> <Left>  :call animate#window_delta_width(10)<CR>
 nnoremap <silent> <Right> :call animate#window_delta_width(-10)<CR>
+nnoremap <silent> <S-Up>    :call animate#window_delta_height(5)<CR>
+nnoremap <silent> <S-Down>  :call animate#window_delta_height(-5)<CR>
+nnoremap <silent> <S-Left>  :call animate#window_delta_width(5)<CR>
+nnoremap <silent> <S-Right> :call animate#window_delta_width(-5)<CR>
+
+"fzf bindings
+nnoremap <silent> <leader>m :Commands<CR>
 "}}}
 
 "startify{{{
@@ -162,6 +171,9 @@ let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 
 "line numbers in nerdtree
 let NERDTreeShowLineNumbers=1
+
+" loupe stuff
+let g:LoupeVeryMagic=0
 "}}}
 
 "prose vs code{{{
@@ -240,7 +252,6 @@ nmap <leader>rn <Plug>(coc-rename)
 
 " list symbols
 nnoremap <leader>s :CocList symbols<CR>
-nnoremap <leader>mc :CocCommand
 " Create mappings for function text object, requires document symbols feature of languageserver.
 xmap if <Plug>(coc-funcobj-i)
 xmap af <Plug>(coc-funcobj-a)
