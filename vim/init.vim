@@ -49,7 +49,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/fzf.vim'
     Plug 'preservim/nerdcommenter'
     Plug 'mhinz/vim-startify'
-    Plug 'tommcdo/vim-ninja-feet'
     Plug 'preservim/nerdtree'
     Plug 'SirVer/UltiSnips'
     Plug 'lervag/vimtex'
@@ -66,6 +65,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'camspiers/animate.vim'
     Plug 'camspiers/lens.vim'
     Plug 'wincent/loupe'
+    Plug 'wellle/targets.vim'
 call plug#end()
 "}}}
 
