@@ -30,7 +30,8 @@ set splitbelow
 
 "vim plug {{{
 call plug#begin('~/.vim/plugged')
-    Plug 'morhetz/gruvbox'
+    "Plug 'morhetz/gruvbox'
+    Plug 'dracula/vim'
     Plug 'godlygeek/tabular'
     Plug 'haya14busa/incsearch.vim'
     Plug 'thaerkh/vim-indentguides'
@@ -75,8 +76,8 @@ let COLORTERM="truecolor"
 syntax on
 highlight Normal ctermbg=None
 let g:gruvbox_italic=0
-" colorscheme night-owl
-colorscheme gruvbox
+ colorscheme dracula
+"colorscheme gruvbox
 "set nolist
 let g:rainbow_active = 1
 set ignorecase
@@ -86,7 +87,7 @@ let g:solarized_termcolors=256
 
 " Lightline{{{
 let g:lightline = {}
-let g:lightline.colorscheme = 'gruvbox'
+let g:lightline.colorscheme = 'dracula'
 "}}}
 
 "mappings{{{
@@ -154,8 +155,6 @@ let g:startify_lists = [
 "}}}
 
 "miscellaneous{{{
-let g:vimtex_view_method = 'zathura'
-
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
@@ -165,6 +164,7 @@ hi CustomPink ctermbg=205 guibg=hotpink guifg=black ctermfg=black
 augroup custom_highlightint
     autocmd!
     autocmd VimEnter,WinEnter * call matchadd('CustomPink', 'TODO') | call matchadd('CustomPink', 'FIXME') | call matchadd('CustomPink', 'CHECK')
+augroup END
 
 " fzf popout
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
@@ -174,6 +174,8 @@ let NERDTreeShowLineNumbers=1
 
 " loupe stuff
 let g:LoupeVeryMagic=0
+
+let g:vimtex_compiler_progname = 'nvr'
 "}}}
 
 "prose vs code{{{
@@ -202,7 +204,7 @@ set nowritebackup
 set cmdheight=2
 
 " You will have bad experience for diagnostic messages when it's default 4000.
-set updatetime=100
+set updatetime=4000
 
 " don't give |ins-completion-menu| messages.
 set shortmess+=c

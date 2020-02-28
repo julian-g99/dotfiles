@@ -1,5 +1,6 @@
 set fish_greeting
-base16-gruvbox-dark-medium
+#base16-gruvbox-dark-medium
+base16-dracula
 fish_vi_key_bindings
 
 function fish_user_key_bindings
