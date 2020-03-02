@@ -1,22 +1,23 @@
 set fish_greeting
 #base16-gruvbox-dark-medium
-base16-dracula
-set -l color00 '#282936'
-set -l color01 '#3a3c4e'
-set -l color02 '#626483'
-set -l color03 '#4d4f68'
-set -l color04 '#62d6e8'
-set -l color05 '#e9e9f4'
-set -l color06 '#f1f2f8'
-set -l color07 '#f7f7fb'
-set -l color08 '#ea51b2'
-set -l color09 '#b45bcf'
-set -l color0A '#ebff87'
-set -l color0B '#00f769'
-set -l color0C '#a1efe4'
-set -l color0D '#62d6e8'
-set -l color0E '#b45bcf'
-set -l color0F '#00f769'
+base16-onedark
+
+set -l color00 '#282c34'
+set -l color01 '#353b45'
+set -l color02 '#3e4451'
+set -l color03 '#545862'
+set -l color04 '#abb2bf'
+set -l color05 '#abb2bf'
+set -l color06 '#b6bdca'
+set -l color07 '#c8ccd4'
+set -l color08 '#e06c75'
+set -l color09 '#d19a66'
+set -l color0A '#e5c07b'
+set -l color0B '#98c379'
+set -l color0C '#56b6c2'
+set -l color0D '#61afef'
+set -l color0E '#c678dd'
+set -l color0F '#be5046'
 
 set -U FZF_DEFAULT_OPTS "
   --color=bg+:$color01,bg:$color00,spinner:$color0C,hl:$color0D

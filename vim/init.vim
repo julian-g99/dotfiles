@@ -31,7 +31,8 @@ set splitbelow
 "vim plug {{{
 call plug#begin('~/.vim/plugged')
     "Plug 'morhetz/gruvbox'
-    Plug 'dracula/vim'
+    "Plug 'dracula/vim'
+    Plug 'joshdick/onedark.vim'
     Plug 'godlygeek/tabular'
     Plug 'haya14busa/incsearch.vim'
     Plug 'thaerkh/vim-indentguides'
@@ -75,8 +76,8 @@ set termguicolors
 let COLORTERM="truecolor"
 syntax on
 highlight Normal ctermbg=None
-let g:gruvbox_italic=0
- colorscheme dracula
+"let g:gruvbox_italic=0
+ colorscheme onedark
 "colorscheme gruvbox
 "set nolist
 let g:rainbow_active = 1
@@ -87,7 +88,7 @@ let g:solarized_termcolors=256
 
 " Lightline{{{
 let g:lightline = {}
-let g:lightline.colorscheme = 'dracula'
+let g:lightline.colorscheme = 'onedark'
 "}}}
 
 "mappings{{{
