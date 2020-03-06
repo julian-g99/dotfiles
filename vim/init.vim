@@ -56,7 +56,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'lervag/vimtex'
     Plug 'gabrielelana/vim-markdown'
     Plug 'christoomey/vim-tmux-navigator'
-    Plug 'liuchengxu/vista.vim'
+    "Plug 'liuchengxu/vista.vim'
     Plug 'rust-lang/rust.vim'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'jreybert/vimagit'
@@ -67,7 +67,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'camspiers/animate.vim'
     Plug 'camspiers/lens.vim'
     Plug 'wincent/loupe'
-    Plug 'wellle/targets.vim'
 call plug#end()
 "}}}
 
@@ -128,7 +127,7 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 
 " vista bindings
-nnoremap <leader>v :Vista<CR>
+"nnoremap <leader>v :Vista<CR>
 
 " animate
 nnoremap <silent> <Up>    :call animate#window_delta_height(10)<CR>
