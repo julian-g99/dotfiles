@@ -1,6 +1,6 @@
 set fish_greeting
 #base16-gruvbox-dark-medium
-base16-onedark
+#base16-onedark
 
 set -l color00 '#282c34'
 set -l color01 '#353b45'

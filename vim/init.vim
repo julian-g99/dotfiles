@@ -30,15 +30,11 @@ set splitbelow
 
 "vim plug {{{
 call plug#begin('~/.vim/plugged')
-    "Plug 'morhetz/gruvbox'
-    "Plug 'dracula/vim'
     Plug 'joshdick/onedark.vim'
     Plug 'godlygeek/tabular'
     Plug 'haya14busa/incsearch.vim'
     Plug 'thaerkh/vim-indentguides'
-    "Plug 'nathanaelkane/vim-indent-guides'
     Plug 'jiangmiao/auto-pairs'
-    "Plug 'dense-analysis/ale'
     Plug 'Vimjas/vim-python-pep8-indent'
     Plug 'machakann/vim-sandwich'
     Plug 'terryma/vim-multiple-cursors'
@@ -56,7 +52,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'lervag/vimtex'
     Plug 'gabrielelana/vim-markdown'
     Plug 'christoomey/vim-tmux-navigator'
-    "Plug 'liuchengxu/vista.vim'
     Plug 'rust-lang/rust.vim'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'jreybert/vimagit'
@@ -67,6 +62,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'camspiers/animate.vim'
     Plug 'camspiers/lens.vim'
     Plug 'wincent/loupe'
+    Plug 'tpope/vim-fugitive'
 call plug#end()
 "}}}
 
@@ -141,6 +137,9 @@ nnoremap <silent> <S-Right> :call animate#window_delta_width(-5)<CR>
 
 "fzf bindings
 nnoremap <silent> <leader>m :Commands<CR>
+
+"fugitive bindings
+nnoremap <leader>g :Git
 "}}}
 
 "startify{{{

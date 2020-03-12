@@ -105,8 +105,8 @@ set $inactive-text-color #676E7D
 set $urgent-bg-color     #E53935
 
 # start dmenu (a program launcher)
-bindsym $mod+shift+d exec rofi -show run -theme gruvbox
-bindsym $mod+d exec rofi -show drun -theme gruvbox
+bindsym $mod+shift+d exec rofi -show run -theme onedark
+bindsym $mod+d exec rofi -show drun -theme onedark
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
