@@ -38,6 +38,7 @@ bind '$' __history_previous_command_arguments
 export DEFAULT_FZF_COMMAND='find .'
 export FZF_ALT_C_COMMAND='find .'
 export FZF_CTRL_T_COMMAND='find .'
+export EDITOR='nvim'
 
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
