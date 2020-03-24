@@ -56,7 +56,7 @@
     #+BEGIN_SRC emacs-lisp
     (use-package evil-leader :ensure t)
     (global-evil-leader-mode)
-    (evil-leader/set-leader ",")
+    (evil-leader/set-leader "SPC")
     (evil-leader/set-key
     "f" 'fzf-directory
     "b" 'switch-to-buffer
@@ -135,8 +135,8 @@
 * UI settings
 ** Color scheme
     #+BEGIN_SRC emacs-lisp
-    (use-package gruvbox-theme :ensure t)
-    (load-theme 'gruvbox-dark-medium t)
+    (use-package one-themes :ensure t)
+    (load-theme 'one-dark t)
     #+END_SRC
 
 ** Font settings
@@ -211,20 +211,19 @@
 	;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
 	:init (setq lsp-keymap-prefix "s-l")
 	:hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
-		(XXX-mode . lsp)
+		(python-mode . lsp)
 		;; if you want which-key integration
 		(lsp-mode . lsp-enable-which-key-integration))
 	:commands lsp
 	:ensure t)
 
       ;; optionally
+      (use-package flycheck :ensure t)
       (use-package lsp-ui :commands lsp-ui-mode :ensure t)
       (use-package company :ensure t)
       (use-package company-lsp :commands company-lsp :ensure t)
       ;; if you are helm user
       (use-package helm-lsp :commands helm-lsp-workspace-symbol :ensure t)
-      ;; if you are ivy user
-      ;; (use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
       (use-package lsp-treemacs :commands lsp-treemacs-errors-list :ensure t)
 
       ;; optionally if you want to use debugger
@@ -238,5 +237,9 @@
     #+END_SRC
 ** Language modes
    #+BEGIN_SRC emacs-lisp
-   (use-package rust-mode :ensure t)
+   (use-package lsp-python-ms
+	:ensure t
+	:hook (python-mode . (lambda ()
+                          (require 'lsp-python-ms)
+                          (lsp))))  ; or lsp-deferred
    #+END_SRC

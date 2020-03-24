@@ -1,5 +1,4 @@
 " vim:fdm=marker:foldlevel=0
-
 "editor settings {{{
 let mapleader = " "
 let maplocalleader = " "
@@ -60,7 +59,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'shinchu/lightline-gruvbox.vim'
     Plug 'tpope/vim-obsession'
     Plug 'camspiers/animate.vim'
-    Plug 'camspiers/lens.vim'
+    "Plug 'camspiers/lens.vim'
     Plug 'wincent/loupe'
     Plug 'tpope/vim-fugitive'
 call plug#end()
@@ -87,6 +86,10 @@ let g:lightline.colorscheme = 'onedark'
 "}}}
 
 "mappings{{{
+
+"personal bindings {{{
+nmap <S-enter> O<Esc>
+nmap <CR> o<Esc>
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
@@ -103,8 +106,12 @@ nnoremap <C-j> <C-w><C-j>
 nnoremap <C-k> <C-w><C-k>
 nnoremap <C-l> <C-w><C-l>
 
-tnoremap <Esc> <C-\><C-n>
+nnoremap <leader>dl cc<Esc>
 
+tnoremap <Esc> <C-\><C-n>
+"}}}
+
+"plugin bindings {{{
 nnoremap <leader>f :FZF<CR>
 nnoremap <leader>id :IndentGuidesToggle<CR>
 nmap <leader>t :NERDTreeToggle<CR>
@@ -126,10 +133,10 @@ inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 "nnoremap <leader>v :Vista<CR>
 
 " animate
-nnoremap <silent> <Up>    :call animate#window_delta_height(10)<CR>
-nnoremap <silent> <Down>  :call animate#window_delta_height(-10)<CR>
-nnoremap <silent> <Left>  :call animate#window_delta_width(10)<CR>
-nnoremap <silent> <Right> :call animate#window_delta_width(-10)<CR>
+nnoremap <silent> <C-Up>    :call animate#window_delta_height(10)<CR>
+nnoremap <silent> <C-Down>  :call animate#window_delta_height(-10)<CR>
+nnoremap <silent> <C-Left>  :call animate#window_delta_width(-10)<CR>
+nnoremap <silent> <C-Right> :call animate#window_delta_width(10)<CR>
 nnoremap <silent> <S-Up>    :call animate#window_delta_height(5)<CR>
 nnoremap <silent> <S-Down>  :call animate#window_delta_height(-5)<CR>
 nnoremap <silent> <S-Left>  :call animate#window_delta_width(5)<CR>
@@ -140,6 +147,7 @@ nnoremap <silent> <leader>m :Commands<CR>
 
 "fugitive bindings
 nnoremap <leader>g :Git
+"}}}
 "}}}
 
 "startify{{{
