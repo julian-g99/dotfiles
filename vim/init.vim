@@ -29,7 +29,8 @@ set splitbelow
 
 "vim plug {{{
 call plug#begin('~/.vim/plugged')
-    Plug 'joshdick/onedark.vim'
+    "Plug 'joshdick/onedark.vim'
+    Plug 'ayu-theme/ayu-vim'
     Plug 'godlygeek/tabular'
     Plug 'haya14busa/incsearch.vim'
     Plug 'thaerkh/vim-indentguides'
@@ -71,7 +72,8 @@ let COLORTERM="truecolor"
 syntax on
 highlight Normal ctermbg=None
 "let g:gruvbox_italic=0
- colorscheme onedark
+let ayucolor="mirage"
+colorscheme ayu
 "colorscheme gruvbox
 "set nolist
 let g:rainbow_active = 1
@@ -82,7 +84,7 @@ let g:solarized_termcolors=256
 
 " Lightline{{{
 let g:lightline = {}
-let g:lightline.colorscheme = 'onedark'
+let g:lightline.colorscheme = 'ayu'
 "}}}
 
 "mappings{{{
