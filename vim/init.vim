@@ -111,6 +111,12 @@ nnoremap <C-l> <C-w><C-l>
 nnoremap <leader>dl cc<Esc>
 
 tnoremap <Esc> <C-\><C-n>
+
+"emulating line textobj
+xnoremap il g_o^
+onoremap il :normal vil<CR>
+xnoremap al $o^
+onoremap al :normal val<CR>
 "}}}
 
 "plugin bindings {{{
@@ -185,6 +191,15 @@ let NERDTreeShowLineNumbers=1
 let g:LoupeVeryMagic=0
 
 let g:vimtex_compiler_progname = 'nvr'
+
+" caps lock stuff
+" Execute 'lnoremap x X' and 'lnoremap X x' for each letter a-z.
+for c in range(char2nr('A'), char2nr('Z'))
+  execute 'lnoremap ' . nr2char(c+32) . ' ' . nr2char(c)
+  execute 'lnoremap ' . nr2char(c) . ' ' . nr2char(c+32)
+endfor
+" Kill the capslock when leaving insert mode.
+"autocmd InsertLeave * set iminsert=0
 "}}}
 
 "prose vs code{{{
