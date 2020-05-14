@@ -1,23 +1,22 @@
 set fish_greeting
-#base16-gruvbox-dark-medium
-#base16-onedark
+base16-gruvbox-dark-medium
 
-set -l color00 '#282c34'
-set -l color01 '#353b45'
-set -l color02 '#3e4451'
-set -l color03 '#545862'
-set -l color04 '#abb2bf'
-set -l color05 '#abb2bf'
-set -l color06 '#b6bdca'
-set -l color07 '#c8ccd4'
-set -l color08 '#e06c75'
-set -l color09 '#d19a66'
-set -l color0A '#e5c07b'
-set -l color0B '#98c379'
-set -l color0C '#56b6c2'
-set -l color0D '#61afef'
-set -l color0E '#c678dd'
-set -l color0F '#be5046'
+set -l color00 '#282828'
+set -l color01 '#3c3836'
+set -l color02 '#504945'
+set -l color03 '#665c54'
+set -l color04 '#bdae93'
+set -l color05 '#d5c4a1'
+set -l color06 '#ebdbb2'
+set -l color07 '#fbf1c7'
+set -l color08 '#fb4934'
+set -l color09 '#fe8019'
+set -l color0A '#fabd2f'
+set -l color0B '#b8bb26'
+set -l color0C '#8ec07c'
+set -l color0D '#83a598'
+set -l color0E '#d3869b'
+set -l color0F '#d65d0e'
 
 set -U FZF_DEFAULT_OPTS "
   --color=bg+:$color01,bg:$color00,spinner:$color0C,hl:$color0D
@@ -42,6 +41,7 @@ export EDITOR='nvim'
 
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
 
 alias v="nvim"
 alias vim="nvim"

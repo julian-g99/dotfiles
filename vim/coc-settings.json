@@ -16,5 +16,5 @@
     "python.jediEnabled": false,
     "coc.preferences.jumpCommand": "tab drop",
     "diagnostic.refreshOnInsertMode": true,
-    "coc.preferences.rootPatterns":  ["Cargo.toml",".vim",".git",".hg",".projections.json"]
+    "coc.preferences.rootPatterns":  [".vim",".git",".hg",".projections.json"]
 }

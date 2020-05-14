@@ -29,20 +29,16 @@ set splitbelow
 
 "vim plug {{{
 call plug#begin('~/.vim/plugged')
-    "Plug 'joshdick/onedark.vim'
+    Plug 'morhetz/gruvbox'
     Plug 'ayu-theme/ayu-vim'
-    Plug 'godlygeek/tabular'
     Plug 'haya14busa/incsearch.vim'
     Plug 'thaerkh/vim-indentguides'
     Plug 'jiangmiao/auto-pairs'
     Plug 'Vimjas/vim-python-pep8-indent'
     Plug 'machakann/vim-sandwich'
-    Plug 'terryma/vim-multiple-cursors'
     Plug 'luochen1990/rainbow'
     Plug 'airblade/vim-gitgutter'
-    Plug 'michaeljsmith/vim-indent-object'
     Plug 'junegunn/goyo.vim'
-    Plug 'haishanh/night-owl.vim'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
     Plug 'preservim/nerdcommenter'
@@ -54,42 +50,38 @@ call plug#begin('~/.vim/plugged')
     Plug 'christoomey/vim-tmux-navigator'
     Plug 'rust-lang/rust.vim'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    Plug 'jreybert/vimagit'
     Plug 'dag/vim-fish'
     Plug 'itchyny/lightline.vim'
-    Plug 'shinchu/lightline-gruvbox.vim'
-    Plug 'tpope/vim-obsession'
     Plug 'camspiers/animate.vim'
-    "Plug 'camspiers/lens.vim'
     Plug 'wincent/loupe'
     Plug 'tpope/vim-fugitive'
+    Plug 'janko/vim-test'
 call plug#end()
 "}}}
 
 "{{{theme
 set termguicolors
-let COLORTERM="truecolor"
+"let g:gruvbox_italic=1
 syntax on
-highlight Normal ctermbg=None
-"let g:gruvbox_italic=0
-let ayucolor="mirage"
-colorscheme ayu
 "colorscheme gruvbox
+colorscheme gruvbox
+hi Normal ctermbg=None guibg=None
 "set nolist
 let g:rainbow_active = 1
 set ignorecase
 set noinfercase
-let g:solarized_termcolors=256
+"let g:solarized_termcolors=256
 "}}}
 
 " Lightline{{{
 let g:lightline = {}
-let g:lightline.colorscheme = 'ayu'
+let g:lightline.colorscheme = 'gruvbox'
 "}}}
 
 "mappings{{{
 
 "personal bindings {{{
+nmap cl cc<Esc>
 nmap <S-enter> O<Esc>
 nmap <CR> o<Esc>
 map /  <Plug>(incsearch-forward)
@@ -112,6 +104,10 @@ nnoremap <leader>dl cc<Esc>
 
 tnoremap <Esc> <C-\><C-n>
 
+" tabs
+nnoremap tp :tabp<CR>
+nnoremap tn :tabn<CR>
+nnoremap tc :tabc<CR>
 "emulating line textobj
 xnoremap il g_o^
 onoremap il :normal vil<CR>
@@ -200,20 +196,21 @@ for c in range(char2nr('A'), char2nr('Z'))
 endfor
 " Kill the capslock when leaving insert mode.
 "autocmd InsertLeave * set iminsert=0
+
+"c++ running
+autocmd filetype cpp nnoremap <F4> :w <bar> exec '!g++ '.shellescape('%').' -o '.shellescape('%:r').' && ./'.shellescape('%:r')<CR>
+
+:command IndentFold set fdm=indent
+
+let g:vimtex_view_general_viewer = "zathura"
 "}}}
 
 "prose vs code{{{
 function Prose()
-    set background=light
-    Goyo 70
+    Goyo 99
 endfunction
 
-function Code()
-    set background=dark
-    Goyo!
-endfunction
 nnoremap <leader>p :call Prose()<CR>
-nnoremap <leader>c :call Code()<CR>
 "}}}
 
 "coc{{{
