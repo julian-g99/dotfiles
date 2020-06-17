@@ -55,7 +55,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'camspiers/animate.vim'
     Plug 'wincent/loupe'
     Plug 'tpope/vim-fugitive'
-    Plug 'janko/vim-test'
+    Plug 'kana/vim-textobj-function'
+    Plug 'kana/vim-textobj-user'
 call plug#end()
 "}}}
 
@@ -103,6 +104,8 @@ nnoremap <C-l> <C-w><C-l>
 nnoremap <leader>dl cc<Esc>
 
 tnoremap <Esc> <C-\><C-n>
+
+nnoremap <leader>y :%y+<CR>
 
 " tabs
 nnoremap tp :tabp<CR>
