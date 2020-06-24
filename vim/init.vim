@@ -83,7 +83,7 @@ let g:lightline.colorscheme = 'gruvbox'
 
 "personal bindings {{{
 nmap cl cc<Esc>
-nmap <S-enter> O<Esc>
+nmap <leader><CR> O<Esc>
 nmap <CR> o<Esc>
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
