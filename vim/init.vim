@@ -116,6 +116,10 @@ xnoremap il g_o^
 onoremap il :normal vil<CR>
 xnoremap al $o^
 onoremap al :normal val<CR>
+
+" terminal commands
+nnoremap <leader>vt :vsplit term<CR>
+nnoremap <leader>st :split term<CR>
 "}}}
 
 "plugin bindings {{{
