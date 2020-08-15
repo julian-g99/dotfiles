@@ -2,7 +2,6 @@
 "editor settings {{{
 let mapleader = " "
 let maplocalleader = " "
-let $NVIM_TUI_ENABLE_TRUE_COLORS=1
 let $FZF_DEFAULT_COMMAND = 'find .'
 
 let g:vimtex_complete_enabled = 1
@@ -30,6 +29,7 @@ set splitbelow
 "vim plug {{{
 call plug#begin('~/.vim/plugged')
     Plug 'morhetz/gruvbox'
+    Plug 'haishanh/night-owl.vim'
     Plug 'ayu-theme/ayu-vim'
     Plug 'haya14busa/incsearch.vim'
     Plug 'thaerkh/vim-indentguides'
@@ -48,7 +48,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'lervag/vimtex'
     Plug 'gabrielelana/vim-markdown'
     Plug 'christoomey/vim-tmux-navigator'
-    Plug 'rust-lang/rust.vim'
+    " Plug 'rust-lang/rust.vim'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'dag/vim-fish'
     Plug 'itchyny/lightline.vim'
@@ -64,8 +64,9 @@ call plug#end()
 set termguicolors
 "let g:gruvbox_italic=1
 syntax on
-"colorscheme gruvbox
+let $NVIM_TUI_ENABLE_TRUE_COLORS=1
 colorscheme gruvbox
+"colorscheme night-owl
 hi Normal ctermbg=None guibg=None
 "set nolist
 let g:rainbow_active = 1
@@ -117,9 +118,6 @@ onoremap il :normal vil<CR>
 xnoremap al $o^
 onoremap al :normal val<CR>
 
-" terminal commands
-nnoremap <leader>vt :vsplit term<CR>
-nnoremap <leader>st :split term<CR>
 "}}}
 
 "plugin bindings {{{
@@ -210,6 +208,7 @@ autocmd filetype cpp nnoremap <F4> :w <bar> exec '!g++ '.shellescape('%').' -o '
 :command IndentFold set fdm=indent
 
 let g:vimtex_view_general_viewer = "zathura"
+let g:tex_flavor = 'latex'
 "}}}
 
 "prose vs code{{{

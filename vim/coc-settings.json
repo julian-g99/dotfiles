@@ -1,20 +1,21 @@
 {
+    "python.condaPath": "/home/julian/miniconda3/condabin/conda",
+    "python.venvPath": "/home/julian/miniconda3/envs",
+    "rust-analyzer.serverPath": "/home/julian/.cargo/bin/rust-analyzer",
+    "python.jediEnabled": false,
     "languageserver": {
         "ccls": {
             "command": "ccls",
-            "filetypes": ["c", "cpp", "objc", "objcpp"],
+            "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"],
             "rootPatterns": [".ccls", "compile_commands.json", ".git/", ".hg/"],
             "initializationOptions": {
                 "cache": {
                     "directory": "/tmp/ccls"
                 }
-            }
+           }
         }
     },
-    "python.condaPath": "/home/julian/miniconda3/condabin/conda",
-    "python.venvPath": "/home/julian/miniconda3/envs",
-    "python.jediEnabled": false,
     "coc.preferences.jumpCommand": "tab drop",
     "diagnostic.refreshOnInsertMode": true,
-    "coc.preferences.rootPatterns":  [".vim",".git",".hg",".projections.json"]
+    "coc.preferences.rootPatterns":  [".vim",".git",".hg",".projections.json, Cargo.toml"]
 }
