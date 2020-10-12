@@ -3,6 +3,7 @@
     "python.venvPath": "/home/julian/miniconda3/envs",
     "rust-analyzer.serverPath": "/home/julian/.cargo/bin/rust-analyzer",
     "python.jediEnabled": false,
+    "tsserver.npm": "/usr/local/bin/npm",
     "languageserver": {
         "ccls": {
             "command": "ccls",

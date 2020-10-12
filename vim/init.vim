@@ -57,16 +57,17 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-fugitive'
     Plug 'kana/vim-textobj-function'
     Plug 'kana/vim-textobj-user'
+    Plug 'peitalin/vim-jsx-typescript'
 call plug#end()
 "}}}
 
 "{{{theme
 set termguicolors
 "let g:gruvbox_italic=1
-syntax on
+syntax enable
 let $NVIM_TUI_ENABLE_TRUE_COLORS=1
-colorscheme gruvbox
-"colorscheme night-owl
+"colorscheme gruvbox
+colorscheme night-owl
 hi Normal ctermbg=None guibg=None
 "set nolist
 let g:rainbow_active = 1
@@ -77,7 +78,7 @@ set noinfercase
 
 " Lightline{{{
 let g:lightline = {}
-let g:lightline.colorscheme = 'gruvbox'
+let g:lightline.colorscheme = 'nightowl'
 "}}}
 
 "mappings{{{
@@ -171,6 +172,8 @@ let g:startify_lists = [
 "}}}
 
 "miscellaneous{{{
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"

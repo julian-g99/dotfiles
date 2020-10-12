@@ -14,8 +14,16 @@ snippet hw "homework template"
 \usepackage[ruled, vlined]{algorithm2e}
 
 \theoremstyle{definition}
-\newtheorem{problem}{Problem}
-\newtheorem{lemma}{Lemma}
+\newtheorem{innerproblem}{Problem}
+\newenvironment{problem}[1]{%
+  \renewcommand\theinnerproblem{#1}%
+  \innerproblem
+}{\endinnerproblem}
+\newtheorem{innertheorem}{Theorem}
+\newenvironment{theorem}[1]{%
+  \renewcommand\theinnertheorem{#1}%
+  \innertheorem
+}{\endinnertheorem}
 
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
@@ -72,4 +80,8 @@ snippet img "includegraphics"
 	\caption{$3}
 	\label{$4}
 \end{figure}
+endsnippet
+
+snippet pder "partial derivative"
+\frac{\partial $1}{\partial $2}
 endsnippet

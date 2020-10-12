@@ -2,6 +2,8 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$HOME/.cargo/bin:$PATH
 export PATH=$HOME/bin:$PATH
+export PATH=$HOME/node/bin:$PATH
+
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/julian/.oh-my-zsh"
@@ -10,7 +12,7 @@ export ZSH="/home/julian/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME=""
+ZSH_THEME="candy"
 fpath+=$HOME/.zsh/pure
 autoload -U promptinit; promptinit
 prompt pure
@@ -84,11 +86,33 @@ source /usr/share/fzf/completion.zsh
 # User configuration
 KEYTIMEOUT=1
 
+local selbg='#1d3b53'
+local color00='#011627'
+local color01='#f78c6c'
+local color02='#addb67'
+local color03='#ffcb8b'
+local color04='#82aaff'
+local color05='#c792ea'
+local color06='#7fdbca'
+local color07='#bec5d4'
+local color08='#011627'
+local color09='#ef5350'
+local color0A='#22da6e'
+local color0B='#ffeb95'
+local color0C='#5ca7e4'
+local color0D='#7e57c2'
+local color0E='#21c7a8'
+local color0F='#ffffff'
 
-# export MANPATH="/usr/local/man:$MANPATH"
-export DEFAULT_FZF_COMMAND="find ."
-export FZF_ALT_C_COMMAND="find ."
-export FZF_CTRL_T_COMMAND="find ."
+export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS"\
+" --color=bg+:$selbg,bg:$color00,spinner:$color0C,hl:$color0D"\
+" --color=fg:$color04,header:$color0D,info:$color0A,pointer:$color0C"\
+" --color=marker:$color0C,fg+:$color06,prompt:$color0A,hl+:$color0D"
+
+
+export FZF_CTRL_T_COMMAND='ag -g ""'
+export DEFAULT_FZF_COMMAND='ag -g ""'
+export FZF_ALT_C_COMMAND='fd --type d'
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -114,6 +138,7 @@ export FZF_CTRL_T_COMMAND="find ."
 alias vim=nvim
 alias v=nvim
 alias ls=lsd
+alias pass="lpass show -c --password gatech.edu"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -129,6 +154,7 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
