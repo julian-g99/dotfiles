@@ -28,9 +28,7 @@ set splitbelow
 
 "vim plug {{{
 call plug#begin('~/.vim/plugged')
-    Plug 'morhetz/gruvbox'
     Plug 'haishanh/night-owl.vim'
-    Plug 'ayu-theme/ayu-vim'
     Plug 'haya14busa/incsearch.vim'
     Plug 'thaerkh/vim-indentguides'
     Plug 'jiangmiao/auto-pairs'
@@ -38,26 +36,18 @@ call plug#begin('~/.vim/plugged')
     Plug 'machakann/vim-sandwich'
     Plug 'luochen1990/rainbow'
     Plug 'airblade/vim-gitgutter'
-    Plug 'junegunn/goyo.vim'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
     Plug 'preservim/nerdcommenter'
     Plug 'mhinz/vim-startify'
-    Plug 'preservim/nerdtree'
     Plug 'SirVer/UltiSnips'
     Plug 'lervag/vimtex'
-    Plug 'gabrielelana/vim-markdown'
-    Plug 'christoomey/vim-tmux-navigator'
-    " Plug 'rust-lang/rust.vim'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    Plug 'dag/vim-fish'
     Plug 'itchyny/lightline.vim'
-    Plug 'camspiers/animate.vim'
-    Plug 'wincent/loupe'
-    Plug 'tpope/vim-fugitive'
     Plug 'kana/vim-textobj-function'
     Plug 'kana/vim-textobj-user'
-    Plug 'peitalin/vim-jsx-typescript'
+    Plug 'wincent/loupe'
+    Plug 'nvim-treesitter/nvim-treesitter'
 call plug#end()
 "}}}
 
@@ -85,7 +75,6 @@ let g:lightline.colorscheme = 'nightowl'
 
 "personal bindings {{{
 nmap cl cc<Esc>
-nmap <leader><CR> O<Esc>
 nmap <CR> o<Esc>
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
@@ -113,12 +102,14 @@ nnoremap <leader>y :%y+<CR>
 nnoremap tp :tabp<CR>
 nnoremap tn :tabn<CR>
 nnoremap tc :tabc<CR>
-"emulating line textobj
-xnoremap il g_o^
-onoremap il :normal vil<CR>
-xnoremap al $o^
-onoremap al :normal val<CR>
 
+" splits
+nnoremap <leader>st :sp<bar>te<CR>
+nnoremap <leader>vt :vs<bar>te<CR>
+
+"visual mode
+nnoremap V v$
+nnoremap vv V
 "}}}
 
 "plugin bindings {{{
@@ -130,33 +121,9 @@ nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
 
-" Insert mode completion
-imap <c-x><c-k> <plug>(fzf-complete-word)
-imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-imap <c-x><c-l> <plug>(fzf-complete-line)
-
-"" Advanced customization using Vim function
-inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
-
-" vista bindings
-"nnoremap <leader>v :Vista<CR>
-
-" animate
-nnoremap <silent> <C-Up>    :call animate#window_delta_height(10)<CR>
-nnoremap <silent> <C-Down>  :call animate#window_delta_height(-10)<CR>
-nnoremap <silent> <C-Left>  :call animate#window_delta_width(-10)<CR>
-nnoremap <silent> <C-Right> :call animate#window_delta_width(10)<CR>
-nnoremap <silent> <S-Up>    :call animate#window_delta_height(5)<CR>
-nnoremap <silent> <S-Down>  :call animate#window_delta_height(-5)<CR>
-nnoremap <silent> <S-Left>  :call animate#window_delta_width(5)<CR>
-nnoremap <silent> <S-Right> :call animate#window_delta_width(-5)<CR>
-
 "fzf bindings
 nnoremap <silent> <leader>m :Commands<CR>
 
-"fugitive bindings
-nnoremap <leader>g :Git
 "}}}
 "}}}
 
@@ -191,24 +158,10 @@ let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 "line numbers in nerdtree
 let NERDTreeShowLineNumbers=1
 
-" loupe stuff
-let g:LoupeVeryMagic=0
-
 let g:vimtex_compiler_progname = 'nvr'
-
-" caps lock stuff
-" Execute 'lnoremap x X' and 'lnoremap X x' for each letter a-z.
-for c in range(char2nr('A'), char2nr('Z'))
-  execute 'lnoremap ' . nr2char(c+32) . ' ' . nr2char(c)
-  execute 'lnoremap ' . nr2char(c) . ' ' . nr2char(c+32)
-endfor
-" Kill the capslock when leaving insert mode.
-"autocmd InsertLeave * set iminsert=0
 
 "c++ running
 autocmd filetype cpp nnoremap <F4> :w <bar> exec '!g++ '.shellescape('%').' -o '.shellescape('%:r').' && ./'.shellescape('%:r')<CR>
-
-:command IndentFold set fdm=indent
 
 let g:vimtex_view_general_viewer = "zathura"
 let g:tex_flavor = 'latex'
@@ -234,7 +187,7 @@ set nowritebackup
 set cmdheight=2
 
 " You will have bad experience for diagnostic messages when it's default 4000.
-set updatetime=4000
+set updatetime=500
 
 " don't give |ins-completion-menu| messages.
 set shortmess+=c
@@ -246,14 +199,6 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <C-S-space> coc#refresh()
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-" Or use `complete_info` if your vim support it, like:
 
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -267,17 +212,6 @@ nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
@@ -319,21 +253,13 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 autocmd FileType rust let b:coc_root_patterns = ['Cargo.toml', '.vim', '.git', '.hg', '.projections.json']
 "}}}
 
-"Obsess {{{
-set statusline^=%{ObsessionStatus()}
-nnoremap <leader>o :Obsess<CR>
-nnoremap <leader>O :Obsess!<CR>
+"{{{ treesitter
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+  },
+}
+EOF
 "}}}
-
-"tab stuff{{{
-aug python
-    " ftype/python.vim overwrites this
-    au FileType python setlocal ts=4 sts=4 sw=4 et
-aug end
-
-aug rust
-    " ftype/rust.vim overwrites this
-    au FileType rust setlocal ts=4 sts=4 sw=4 expandtab
-aug end
-"}}}
-

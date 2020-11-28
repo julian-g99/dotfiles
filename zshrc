@@ -75,7 +75,7 @@ prompt pure
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-syntax-highlighting)
+plugins=(zsh-syntax-highlighting colored-man-pages)
 
 
 source $ZSH/oh-my-zsh.sh
@@ -140,6 +140,9 @@ alias v=nvim
 alias ls=lsd
 alias pass="lpass show -c --password gatech.edu"
 
+export GOPATH=/home/julian/go
+export PATH=$GOPATH/bin/:$PATH
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/julian/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
@@ -154,7 +157,5 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-
-
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

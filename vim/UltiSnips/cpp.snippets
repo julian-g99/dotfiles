@@ -1,14 +1,3 @@
-snippet type "IR instruction type"
-`!p t[2] = t[1].upper()`case "$1": type = $2;
-			break;
-endsnippet
-
-snippet viter "iterate through vector"
-for ($1::iterator it = $2.begin(); it != $2.end(); ++it) {
-	$3
-}
-endsnippet
-
 snippet cp "competitive programming"
 #include <bits/stdc++.h>
 using namespace std;
@@ -17,6 +6,12 @@ typedef long long ll;
 typedef vector<int> vi;
 typedef vector<long long> vll;
 typedef vector<double> vd;
+
+#define vvi(name, H, W, val) vector<vector<int>> name((H), vector<int>((W), val));
+#define vvvi(name, d1, d2, d3, val) vector<vector<vector<int>>> name((d1), vector<vector<int>>((d2), vector<int>((d3), val)));
+
+#define vvll(name, H, W, val) vector<vector<long long>> name((H), vector<long long>((W), val));
+#define vvvll(name, d1, d2, d3, val) vector<vector<vector<long long>>> name((d1), vector<vector<long long>>((d2), vector<long long>((d3), val)));
 
 int main() {
     ios_base::sync_with_stdio(false);
@@ -31,6 +26,15 @@ snippet cpt "competitive programming with test cases"
 using namespace std;
 
 typedef long long ll;
+typedef vector<int> vi;
+typedef vector<long long> vll;
+typedef vector<double> vd;
+
+#define vvi(name, H, W, val) vector<vector<int>> name((H), vector<int>((W), val));
+#define vvvi(name, d1, d2, d3, val) vector<vector<vector<int>>> name((d1), vector<vector<int>>((d2), vector<int>((d3), val)));
+
+#define vvll(name, H, W, val) vector<vector<long long>> name((H), vector<long long>((W), val));
+#define vvvll(name, d1, d2, d3, val) vector<vector<vector<long long>>> name((d1), vector<vector<long long>>((d2), vector<long long>((d3), val)));
 
 void solve() {
 	$1
@@ -42,7 +46,7 @@ int main() {
 
 	int t;
 	cin >> t;
-	forl (int i = 0; i < t; i++) {
+	for (int i = 0; i < t; i++) {
 		solve();
 	}
 }
