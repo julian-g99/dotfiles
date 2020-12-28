@@ -55,3 +55,62 @@ endsnippet
 snippet forl "for loop"
 for (int $1 = 0; $1 < $2; $1++) $3
 endsnippet
+
+snippet segtree "segment tree template"
+struct TreeNode {
+	int l, r;
+	int value;
+	TreeNode *left, *right;
+
+	TreeNode(int leftMost, int rightMost) {
+		l = leftMost;
+		r = rightMost;
+
+		value = 0;
+
+		if (l != r) {
+			int mid = l + (r-l) / 2;
+			left = new TreeNode(l, mid);
+			right = new Treenode(mid+1, r);
+			recalc();
+		}
+	}
+
+	~TreeNode() {
+		if (l != r) {
+			delete left;
+			delete right;
+		}
+	}
+
+	void recalc() {
+		if (l != r)
+			value = max(left->value, right->value);
+	}
+
+	void pointUpdate(int idx, int val) {
+		if (l == r) {
+			value = val;
+			return;
+		}
+
+		if (idx <= left->r)
+			left -> pointUpdate(idx, val);
+		else
+			right -> pointUpdate(idx, val);
+
+		recalc();
+	}
+
+	int rangeQuery(int leftMost, int rightMost) {
+		if (leftMost > r || rightMost < l)
+			return 0;
+
+		if (leftMost <= l && rightMost >= r)
+			return value;
+
+		return max(left->rangeQuery(leftMost, rightMost),
+					right->rangeQuery(leftMost, rightMost));
+	}
+};
+endsnippet

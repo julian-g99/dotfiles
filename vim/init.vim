@@ -21,13 +21,16 @@ set lbr
 set breakindent
 
 set nolist
-"set list lcs=tab:\|\ 
 set splitright
 set splitbelow
+set nocp
+filetype plugin on
+set mouse=a
 "}}}
 
 "vim plug {{{
 call plug#begin('~/.vim/plugged')
+    Plug 'morhetz/gruvbox'
     Plug 'haishanh/night-owl.vim'
     Plug 'haya14busa/incsearch.vim'
     Plug 'thaerkh/vim-indentguides'
@@ -47,28 +50,29 @@ call plug#begin('~/.vim/plugged')
     Plug 'kana/vim-textobj-function'
     Plug 'kana/vim-textobj-user'
     Plug 'wincent/loupe'
-    Plug 'nvim-treesitter/nvim-treesitter'
+    "Plug 'nvim-treesitter/nvim-treesitter'
+    Plug 'yuezk/vim-js'
+    Plug 'maxmellon/vim-jsx-pretty'
+    Plug 'preservim/nerdtree'
 call plug#end()
 "}}}
 
 "{{{theme
 set termguicolors
-"let g:gruvbox_italic=1
 syntax enable
 let $NVIM_TUI_ENABLE_TRUE_COLORS=1
-"colorscheme gruvbox
-colorscheme night-owl
+set background=dark
+let g:gruvbox_italic = 1
+colorscheme gruvbox
 hi Normal ctermbg=None guibg=None
-"set nolist
 let g:rainbow_active = 1
 set ignorecase
 set noinfercase
-"let g:solarized_termcolors=256
 "}}}
 
 " Lightline{{{
 let g:lightline = {}
-let g:lightline.colorscheme = 'nightowl'
+let g:lightline.colorscheme = 'gruvbox'
 "}}}
 
 "mappings{{{
@@ -93,6 +97,7 @@ nnoremap <C-k> <C-w><C-k>
 nnoremap <C-l> <C-w><C-l>
 
 nnoremap <leader>dl cc<Esc>
+nnoremap <leader>a ggVG
 
 tnoremap <Esc> <C-\><C-n>
 
@@ -108,8 +113,14 @@ nnoremap <leader>st :sp<bar>te<CR>
 nnoremap <leader>vt :vs<bar>te<CR>
 
 "visual mode
-nnoremap V v$
 nnoremap vv V
+nnoremap V v$
+
+" Execute 'lnoremap x X' and 'lnoremap X x' for each letter a-z.
+for c in range(char2nr('A'), char2nr('Z'))
+  execute 'lnoremap ' . nr2char(c+32) . ' ' . nr2char(c)
+  execute 'lnoremap ' . nr2char(c) . ' ' . nr2char(c+32)
+endfor
 "}}}
 
 "plugin bindings {{{
@@ -123,6 +134,8 @@ omap <leader><tab> <plug>(fzf-maps-o)
 
 "fzf bindings
 nnoremap <silent> <leader>m :Commands<CR>
+
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 "}}}
 "}}}
@@ -139,7 +152,7 @@ let g:startify_lists = [
 "}}}
 
 "miscellaneous{{{
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
+"command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
@@ -155,24 +168,10 @@ augroup END
 " fzf popout
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 
-"line numbers in nerdtree
-let NERDTreeShowLineNumbers=1
-
 let g:vimtex_compiler_progname = 'nvr'
-
-"c++ running
-autocmd filetype cpp nnoremap <F4> :w <bar> exec '!g++ '.shellescape('%').' -o '.shellescape('%:r').' && ./'.shellescape('%:r')<CR>
 
 let g:vimtex_view_general_viewer = "zathura"
 let g:tex_flavor = 'latex'
-"}}}
-
-"prose vs code{{{
-function Prose()
-    Goyo 99
-endfunction
-
-nnoremap <leader>p :call Prose()<CR>
 "}}}
 
 "coc{{{
@@ -253,13 +252,12 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 autocmd FileType rust let b:coc_root_patterns = ['Cargo.toml', '.vim', '.git', '.hg', '.projections.json']
 "}}}
 
-"{{{ treesitter
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  highlight = {
-    enable = true,              -- false will disable the whole extension
-  },
-}
-EOF
+"{{{ Language Settings
+
+"{{{ All
+augroup FormatRust
+    autocmd BufWritePost *.rs :call CocAction('format')
+augroup END
+"}}}
+
 "}}}
